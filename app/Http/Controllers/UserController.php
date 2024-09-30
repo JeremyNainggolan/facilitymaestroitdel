@@ -20,7 +20,7 @@ class UserController extends Controller
         return view('login');
     }
 
-    public function  adminLogin()
+    public function admin_login()
     {
         return view('admin.login');
     }
@@ -30,7 +30,8 @@ class UserController extends Controller
         return view('admin.dashboard');
     }
 
-    public function home() {
+    public function home()
+    {
         return view('home');
     }
 
@@ -54,7 +55,7 @@ class UserController extends Controller
         $user = User::create($data);
 
         if (!$user) {
-            return redirect(url('/register'))->with('error', 'User already exist');
+            return redirect(url('register'))->with('error', 'User already exist');
         }
 
         return redirect(url('login'))->with('success', 'Registration Successful');
@@ -62,6 +63,9 @@ class UserController extends Controller
 
     function authentication(Request $request)
     {
+        echo '<pre>';
+        print_r($_POST);
+        echo '<pre>';
         $request->validate([
             'username' => 'required',
             'password' => 'required',
@@ -69,15 +73,35 @@ class UserController extends Controller
 
         $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
-            if (auth()->user()->type == 'admin') {
-                return redirect()->intended(url('admin/dashboard'));
-            } else {
-                return redirect()->intended(url('home'));
-            }
+            return redirect()->intended(url('home'));
         }
 
         return redirect(url('login'))->with('error', 'Username or Password is Invalid');
     }
+
+    function admin_auth(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Jika login berhasil dan user adalah admin
+            if (auth()->user()->type == 'admin') {
+                return redirect()->intended(url('admin/dashboard'));
+            } else {
+                Auth::logout(); // Jika user bukan admin, logout user
+                return redirect(url('admin/login'))->with('error', 'You do not have admin access.');
+            }
+        }
+
+        // Jika login gagal
+        return redirect(url('admin/login'))->with('error', 'Username or Password is Invalid');
+    }
+
 
     function logout()
     {
