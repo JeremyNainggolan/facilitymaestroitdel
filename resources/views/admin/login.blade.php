@@ -10,30 +10,34 @@
                             <div class="card-body" style="font-family: 'Inknut Antiaqua', serif;">
                                 <img class="card-img p-4" src="{{ asset('svg/logo-no-background.svg') }}" alt="">
                                 <h2 class="fw-bolder text-center mx-2 py-3">- Administration Login -</h2>
-                                <form role="form" class="text-start" method="POST" action="{{ route('admin.login') }}">
+                                <form role="form" method="POST" action="{{ route('admin.login') }}">
                                     @csrf
                                     <div class="input-group input-group-outline my-3 px-2">
-                                        <input required value="{{ old('email') }}" autofocus id="email" name="email" type="email"
-                                            class="form-control" placeholder="Email" aria-label="Email">
-                                        @error('email')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
+                                        <input required value="{{ old('email') }}" autofocus id="email" name="email"
+                                               type="email"
+                                               class="form-control" placeholder="Email" aria-label="Email">
+                                        @if ($errors->has('email'))
+                                            <div class="text-danger">
+                                                {{ $errors->first('email') }}
                                             </div>
-                                        @enderror
+                                        @endif
                                     </div>
                                     <div class="input-group input-group-outline mb-2 px-2">
-                                        <input required id="password" name="password" type="password" class="form-control"
-                                            placeholder="Password" aria-label="Password">
-                                        @error('password')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
+                                        <input required id="password" name="password" type="password"
+                                               class="form-control"
+                                               placeholder="Password" aria-label="Password">
+                                        @if ($errors->has('password'))
+                                            <div class="text-danger">
+                                                {{ $errors->first('password') }}
                                             </div>
-                                        @enderror
+                                        @endif
                                     </div>
                                     <div class="text-center">
                                         <button id="submit" name="submit" type="submit"
-                                            class="text-white btn w-100 my-4 mb-4" style="background-color: #67C6E3">Sign
-                                            in</button>
+                                                class="text-white btn w-100 my-4 mb-4"
+                                                style="background-color: #67C6E3">Sign
+                                            in
+                                        </button>
                                     </div>
                                 </form>
                             </div>
