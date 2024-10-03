@@ -10,7 +10,7 @@
                             <div class="card-body" style="font-family: 'Inknut Antiaqua', serif;">
                                 <img class="card-img p-4" src="{{ asset('svg/logo-no-background.svg') }}" alt="">
                                 <h2 class="fw-bolder text-center mx-2 py-3">- Administration Login -</h2>
-                                <form role="form" class="text-start" method="POST" action="{{ route('admin.login') }}">
+                                <form role="form" method="POST" action="{{ route('admin.login') }}">
                                     @csrf
                                     <div class="input-group input-group-outline my-3 px-2">
                                         <input required value="{{ old('email') }}" autofocus id="email" name="email"

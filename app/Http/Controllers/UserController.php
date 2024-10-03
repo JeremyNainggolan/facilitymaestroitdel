@@ -17,11 +17,22 @@ class UserController extends Controller
 
     public function login()
     {
-        return view('login');
+        if (auth()->check()) {
+            // Redirect user based on their role
+            return redirect('/');
+        }
+
+        return view('login');  // Render login page if not authenticated
     }
 
     public function admin_login()
     {
+        if (auth()->check()) {
+            if (auth()->user()->type == 'admin') {
+                return redirect()->route('admin.dashboard');
+            }
+        }
+
         return view('admin.login');
     }
 
@@ -33,6 +44,11 @@ class UserController extends Controller
     public function home()
     {
         return view('home');
+    }
+
+    public function rent()
+    {
+        return view('rent');
     }
 
     function store(Request $request)
@@ -92,9 +108,6 @@ class UserController extends Controller
             // Jika login berhasil dan user adalah admin
             if (auth()->user()->type == 'admin') {
                 return redirect()->intended(url('admin/dashboard'));
-            } else {
-                Auth::logout(); // Jika user bukan admin, logout user
-                return redirect(url('admin/login'))->with('error', 'You do not have admin access.');
             }
         }
 
