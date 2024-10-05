@@ -45,7 +45,7 @@ class CreateUserSeeder extends Seeder
                 'username' => 'mart.jeremiah',
                 'phonenumber' => '085171679411',
                 'type' => 1,
-                'password' => Hash::make('martjeremiah123'),
+                'password' => Hash::make('admin123'),
             ),
         );
 
