@@ -19,7 +19,7 @@
 
             <div class="container">
                 <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
-                    <div class="card border-0 px-1 rounded-4 shadow" style="font-family: 'Inknut Antiaqua', serif;">
+                    <div class="card border-0 px-1 rounded-4 shadow">
                         <div class="text-center pt-4">
                             <h2 class="fs-1 fw-bold">Register</h2>
                         </div>
@@ -61,6 +61,10 @@
                                             {{ $errors->first('password') }}
                                         </div>
                                     @endif
+                                </div>
+                                <div class="mb-3">
+                                    <label for="formFile" class="form-label">Profile Picture</label>
+                                    <input class="form-control" type="file" id="formFile" name="formFile" accept=".png, .jpg, .jpeg">
                                 </div>
                                 <div class="form-check form-check-info text-start">
                                     <input required class="form-check-input" type="checkbox" value=""

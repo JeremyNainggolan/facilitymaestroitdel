@@ -29,14 +29,14 @@
                 <div class="card-body fs-5">
                     <i class="bi bi-building" style="font-size: 3rem;"></i>
                     <p class="card-title mt-2 fw-bold">Peminjaman Fasilitas</p>
-                    <p class="card-text pb-lg-4 pb-sm-3">Civitas Akademika IT Del dapat mengajukan peminjaman barang</p>
+                    <p class="card-text pb-lg-4 pb-sm-3">Civitas Akademika IT Del dapat mengajukan peminjaman fasilitas</p>
                 </div>
             </div>
             <div class="card col-lg-3 col-md-10 mb-4 d-flex shadow border-light">
                 <div class="card-body fs-5">
                     <i class="bi bi-clock-history" style="font-size: 3rem;"></i>
                     <p class="card-title mt-2 fw-bold">Detail Peminjaman</p>
-                    <p class="card-text pb-lg-4 pb-sm-3">Civitas Akademika IT Del dapat mengajukan peminjaman barang</p>
+                    <p class="card-text pb-lg-4 pb-sm-3">Civitas Akademika IT Del dapat melihat riwayat peminjaman</p>
                 </div>
             </div>
         </div>

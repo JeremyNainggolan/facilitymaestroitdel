@@ -43,7 +43,8 @@ class UserController extends Controller
 
     public function home()
     {
-        return view('home');
+        $data = User::all();
+        return view('home', $data->toArray());
     }
 
     public function rent()
@@ -58,6 +59,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'username' => 'required|unique:users',
             'phonenumber' => 'required',
+            'formFile' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'password' => 'required',
         ]);
 

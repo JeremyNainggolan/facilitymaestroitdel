@@ -7,7 +7,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-4 col-md-8 col-12">
                         <div class="card border-0 shadow rounded-4">
-                            <div class="card-body" style="font-family: 'Inknut Antiaqua', serif;">
+                            <div class="card-body">
                                 <img class="card-img p-4" src="{{ asset('svg/logo-no-background.svg') }}" alt="">
                                 <h2 class="fw-bolder text-center mx-2 py-3">- Administration Login -</h2>
                                 <form role="form" method="POST" action="{{ route('admin.login') }}">
