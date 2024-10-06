@@ -117,7 +117,6 @@ class UserController extends Controller
         return redirect(url('admin/login'))->with('error', 'Username or Password is Invalid');
     }
 
-
     function logout()
     {
         Session::flush();
