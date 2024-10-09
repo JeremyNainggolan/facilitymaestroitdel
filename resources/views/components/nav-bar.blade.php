@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg sticky-top navbar-light top-0 w-100 bg-light opacity-75">
+<nav class="p-smg-3 navbar navbar-expand-lg sticky-top navbar-light top-0 w-100 bg-light opacity-75">
     <div class="container-fluid p-1">
         <a class="navbar-brand px-lg-3 fw-bolder" href="#">Facility Maestro</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
