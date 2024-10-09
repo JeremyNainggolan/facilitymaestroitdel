@@ -1,5 +1,5 @@
-<div class="position-relative m-3 card shadow border-light d-flex flex-column flex-shrink-0 p-3 text-dark bg-light"
-     style="width: 30vh; height: 95vh">
+<div class="d-flex flex-column flex-shrink-0 text-dark p-4 vh-100 position-sticky bg-light"
+     style="width: 30vh; top: 0;">
     <a href="{{ url('admin/dashboard') }}"
        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <img src="{{ asset('svg/logo-no-background.svg') }}" class="img-fluid p-4" alt="Logo">
@@ -13,13 +13,13 @@
             </x-side-nav-links>
         </li>
         <li>
-            <x-side-nav-links href="/admin/user" :active="request()->is('admin/user')">
+            <x-side-nav-links href="/admin/user" :active="request()->is('admin/user') || request()->is('admin/user/edit') || request()->is('admin/user/history')">
                 <i class="bi bi-person px-2"></i>
                 User
             </x-side-nav-links>
         </li>
         <li>
-            <x-side-nav-links href="/admin/item" :active="request()->is('admin/user')">
+            <x-side-nav-links href="/admin/item" :active="request()->is('admin/item')">
                 <i class="bi bi-tv px-2"></i>
                 Item
             </x-side-nav-links>
@@ -62,27 +62,27 @@
     {{--        Launch static backdrop modal--}}
     {{--    </button>--}}
 
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Sign Out</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Are you sure to Sign Out?
-                </div>
-                <div class="modal-footer">
-                    <form method="GET" action="{{ route('admin.logout') }}" role="form">
-                        @csrf
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                        <button type="submit" class="btn btn-primary" href="{{ route('admin.logout') }}">Yes</button>
-                    </form>
-                </div>
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Sign Out</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure to Sign Out?
+            </div>
+            <div class="modal-footer">
+                <form method="GET" action="{{ url('admin/logout') }}" role="form">
+                    @csrf
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-primary" href="{{ url('admin/logout') }}">Yes</button>
+                </form>
             </div>
         </div>
     </div>
-
 </div>

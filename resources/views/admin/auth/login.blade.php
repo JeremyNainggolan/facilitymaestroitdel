@@ -1,5 +1,5 @@
-@extends('layouts/app')
-@section('title', 'Administration Login')
+@extends('layouts.app')
+@section('title', $data['page_title'])
 @section('content')
     <main class="main-content mt-0">
         <div class="page-header align-items-center min-vh-100 bg-white d-flex justify-content-center">

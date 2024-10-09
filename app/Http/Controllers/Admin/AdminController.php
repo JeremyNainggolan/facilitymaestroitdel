@@ -1,31 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function login()
     {
-
-    }
-
-    public function admin_login()
-    {
+        $data['page_title'] = "Admin Login";
         if (auth()->check()) {
             if (auth()->user()->type == 'admin') {
                 return redirect()->route('admin.dashboard');
             }
         }
 
-        return view('admin.login');
+        return view('admin.auth.login', compact('data'));
     }
-
     function post_login(Request $request)
     {
         $request->validate([
@@ -44,11 +39,29 @@ class AdminController extends Controller
 
         return redirect(url('admin/login'))->with('error', 'Username or Password is Invalid');
     }
-
     function logout()
     {
         Session::flush();
         Auth::logout();
         return redirect(url('login'));
+    }
+    public function dashboard()
+    {
+        $data['page_title'] = 'Dashboard';
+        $data['user'] = DB::table('users')->get();
+//        $data['items'] = DB::table('items')->get();
+        $data['total_users'] = DB::table('users')->count();
+        return view('admin.dashboard', compact('data'));
+    }
+    public function user()
+    {
+        $data['page_title'] = 'Users';
+        $data['user'] = DB::table('users')->get();
+        return view('admin.user.index', compact('data'));
+    }
+    public function edit()
+    {
+        $data['page_title'] = 'Edit User';
+        return view('admin.user.edit', compact('data'));
     }
 }
