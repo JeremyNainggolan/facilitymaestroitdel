@@ -13,7 +13,7 @@
                     </div>
                     <div class="card-body">
                         <p class="pb-2 fs-2 fw-bolder"><i class="bi bi-people pe-3"
-                                                          style="font-size: 2.4rem"></i>{{ $data['total_users'] > 1 ? $data['total_users'] . ' Users' : $data['total_users'] . ' User' }}
+                                                          style="font-size: 2.4rem"></i>{{ $data['total_user'] > 1 ? $data['total_user'] . ' Users' : $data['total_user'] . ' User' }}
                         </p>
                         <a href="{{ url('admin/user') }}" class="text-decoration-none fst-italic"
                            style="color: #777777">View Detail</a>
@@ -26,8 +26,7 @@
                         Total Items
                     </div>
                     <div class="card-body">
-                        <p class="pb-2 fs-2 fw-bolder"><i class="bi bi-laptop pe-3" style="font-size: 2.4rem"></i>128
-                            Items</p>
+                        <p class="pb-2 fs-2 fw-bolder"><i class="bi bi-laptop pe-3" style="font-size: 2.4rem"></i>{{ $data['total_item'] > 1 ? $data['total_item'] . ' Items' : $data['total_item'] . ' User' }}</p>
                         <a href="{{ url('admin/item') }}" class="text-decoration-none fst-italic"
                            style="color: #777777">View Detail</a>
                     </div>

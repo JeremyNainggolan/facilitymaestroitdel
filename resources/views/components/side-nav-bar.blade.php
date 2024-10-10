@@ -13,15 +13,24 @@
             </x-side-nav-links>
         </li>
         <li>
-            <x-side-nav-links href="/admin/user" :active="request()->is('admin/user') || request()->is('admin/user/edit') || request()->is('admin/user/history')">
+            <x-side-nav-links href="/admin/user"
+                              :active="request()->is('admin/user') || request()->is('admin/user/edit') || request()->is('admin/user/history')">
                 <i class="bi bi-person px-2"></i>
                 User
             </x-side-nav-links>
         </li>
         <li>
-            <x-side-nav-links href="/admin/item" :active="request()->is('admin/item')">
+            <x-side-nav-links href="/admin/item"
+                              :active="request()->is('admin/item') || request()->is('admin/item/add') || request()->is('admin/item/edit') || request()->is('admin/detail')">
                 <i class="bi bi-tv px-2"></i>
                 Item
+            </x-side-nav-links>
+        </li>
+        <li>
+            <x-side-nav-links href="/admin/area"
+                              :active="request()->is('admin/area') || request()->is('admin/area/edit')">
+                <i class="bi bi-archive px-2"></i>
+                Area
             </x-side-nav-links>
         </li>
         <li>

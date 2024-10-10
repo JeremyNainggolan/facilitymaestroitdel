@@ -22,7 +22,7 @@
                                     @endif
                                     <div class="mb-2">
                                         <input id="username" name="username" autofocus type="text"
-                                               class="form-control form-control-lg" placeholder="Username"
+                                               class="form-control form-control-lg" placeholder="Username" required
                                                aria-label="Username">
                                         @if ($errors->has('username'))
                                             <div class="text-danger fw-1">
@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="mb-2">
                                         <input id="password" name="password" type="password"
-                                               class="form-control form-control-lg" placeholder="Password"
+                                               class="form-control form-control-lg" placeholder="Password" required
                                                aria-label="Password">
                                         @if ($errors->has('password'))
                                             <div class="text-danger">

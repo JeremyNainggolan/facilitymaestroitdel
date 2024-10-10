@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Item;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -29,23 +30,30 @@ class ItemController extends Controller
            'description' => 'required',
            'condition' => 'required',
            'status' => 'required',
-           'item_img' => 'required',
+           'item_img' => '',
         ]);
 
-        $item['item_name'] = $request->item_name;
-        $item['location'] = $request->location;
-        $item['description'] = $request->description;
-        $item['condition'] = $request->condition;
-        $item['status'] = $request->status;
-        $item['item_img'] = $request->item_img;
-
-        $item = DB::table('items')->insert($item);
-
-        if (!$item) {
-            return redirect(url('/admin/item'))->with('error', 'Item Not Added');
+        $img_name = null;
+        if ($request->hasFile('item_img')) {
+            $img_name = time() . '.' . $request->item_img->getClientOriginalExtension();
+            $request->item_img->move(public_path('item'), $img_name);
         }
 
-        return redirect(url('/admin/item'))->with('success', 'Item Added');
+        $data['item_name'] = $request->item_name;
+        $data['location'] = $request->location;
+        $data['description'] = $request->description;
+        $data['condition'] = $request->condition;
+        $data['item_status'] = $request->status == 0 ? 'active' : 'inactive';
+        $data['filename'] = $img_name;
+
+        $item = DB::table('items')->insert($data);
+
+        if (!$item) {
+            return redirect(url('/admin/item/add'))->with('error', 'Item Not Added');
+        }
+
+        return redirect(url('/admin/item'))->with('success', 'Item Successfully Added');
+
     }
 
 }

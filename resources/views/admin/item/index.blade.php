@@ -6,8 +6,19 @@
 
         <h3 class="mb-4"><?= $data['page_title'] ?></h3>
         <div class="card p-4 shadow border-light d-flex">
-            <div class="card-title fs-5 fw-medium mb-3">{{ $data['page_title'] . ' Detail' }}<a href="{{ url('admin/item/add') }}" class="text-decoration-none text-dark"><i
+            <div class="card-title fs-5 fw-medium mb-3">{{ $data['page_title'] . ' Detail' }}<a
+                    href="{{ url('admin/item/add') }}" class="text-decoration-none text-dark"><i
                         class="bi bi-node-plus-fill ms-2"></i></a></div>
+            @if (session()->has('error'))
+                <div class="text-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+            @if (session()->has('success'))
+                <div class="text-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <table class="table">
                 <thead>
                 <tr class="">
@@ -27,7 +38,7 @@
                     @foreach($data['items'] as $item)
                         <tr class="">
                             <td>{{ $i++ }}</td>
-                            <td>{{ $item->filename }}</td>
+                            <td><img alt="" src="{{ asset('item/img/' . $item->filename) }}" height="120rem"></td>
                             <td>{{ $item->item_name }}</td>
                             <td>{{ $item->location }}</td>
                             <td>{{ $item->description }}</td>
@@ -38,8 +49,8 @@
                                    style="background-color: #8EAEC4"><i
                                         class="bi bi-pencil-square me-2"></i>Edit</a>
                                 <a href="" type="button"
-                                   class="btn" style="background-color: #D9D9D9"><i
-                                        class="bi bi-clock-history me-2"></i>History</a>
+                                   class="btn bg-danger text-light"><i
+                                        class="bi bi-trash me-2"></i>Delete</a>
                             </td>
                         </tr>
                     @endforeach

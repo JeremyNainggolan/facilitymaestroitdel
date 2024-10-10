@@ -15,7 +15,7 @@ class AdminController extends Controller
         $data['page_title'] = "Admin Login";
         if (auth()->check()) {
             if (auth()->user()->type == 'admin') {
-                return redirect()->route('admin.dashboard');
+                return redirect(url('admin/dashboard'));
             }
         }
 
@@ -48,9 +48,8 @@ class AdminController extends Controller
     public function dashboard()
     {
         $data['page_title'] = 'Dashboard';
-        $data['user'] = DB::table('users')->get();
-//        $data['items'] = DB::table('items')->get();
-        $data['total_users'] = DB::table('users')->count();
+        $data['total_item'] = DB::table('items')->count();
+        $data['total_user'] = DB::table('users')->count();
         return view('admin.dashboard', compact('data'));
     }
     public function user()

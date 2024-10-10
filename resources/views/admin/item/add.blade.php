@@ -7,8 +7,15 @@
         <h3 class="mb-4"><?= $data['page_title'] ?></h3>
         <div class="card p-4 shadow border-light d-flex">
             <div class="card-title fs-5 fw-medium mb-3">{{ $data['page_title']}}</div>
-            <form role="form" method="POST" action="{{ route('item.add') }}">
+            <form role="form" method="POST" action="{{ route('item.add') }}" enctype="multipart/form-data">
                 @csrf
+                @if($errors->any())
+                    @foreach($errors->all() as $error)
+                        <div class="text-danger">
+                            {{ $error }}
+                        </div>
+                    @endforeach
+                @endif
                 <div class="row my-2">
                     <div class="col-lg-8">
                         <label for="item_name" class="form-label">Item Name</label>
@@ -29,6 +36,7 @@
                     <div class="col-lg-6">
                         <label for="condition" class="form-label">Condition</label>
                         <select name="condition" id="condition" class="form-select" required>
+                            <option selected>-- Choose Condition --</option>
                             <option value="0">Broken</option>
                             <option value="1">Good</option>
                             <option value="2">Lost</option>
@@ -37,6 +45,7 @@
                     <div class="col-lg-6">
                         <label for="status" class="form-label">Status</label>
                         <select name="status" id="status" class="form-select" required>
+                            <option selected>-- Choose Status --</option>
                             <option value="0">Active</option>
                             <option value="1">Inactive</option>
                         </select>
@@ -44,7 +53,7 @@
                 </div>
                 <div class="row my-2">
                     <div class="col-lg-6">
-                        <label for="formFile" class="form-label">Picture</label>
+                        <label for="item_img" class="form-label">Picture</label>
                         <input class="form-control" type="file" id="item_img" name="item_img"
                                accept=".png, .jpg, .jpeg">
                     </div>
