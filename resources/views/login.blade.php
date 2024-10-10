@@ -4,7 +4,7 @@
     <main class="main-content mt-0">
         <section>
             <div class="page-header min-vh-100 d-flex align-items-center justify-content-center">
-                <div class="container fw-normal" style="font-family: 'Inknut Antiaqua', serif;">
+                <div class="container fw-normal">
                     <div class="col-xl-4 col-lg-5 col-md-7 d-flex mx-lg-0 mx-auto">
                         <div class="card rounded-4 p-3 border-0 shadow">
                             <img src="{{ asset('svg/logo-no-background.svg') }}" class="card-img-top p-4" alt="">
@@ -22,7 +22,7 @@
                                     @endif
                                     <div class="mb-2">
                                         <input id="username" name="username" autofocus type="text"
-                                               class="form-control form-control-lg" placeholder="Username"
+                                               class="form-control form-control-lg" placeholder="Username" required
                                                aria-label="Username">
                                         @if ($errors->has('username'))
                                             <div class="text-danger fw-1">
@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="mb-2">
                                         <input id="password" name="password" type="password"
-                                               class="form-control form-control-lg" placeholder="Password"
+                                               class="form-control form-control-lg" placeholder="Password" required
                                                aria-label="Password">
                                         @if ($errors->has('password'))
                                             <div class="text-danger">
