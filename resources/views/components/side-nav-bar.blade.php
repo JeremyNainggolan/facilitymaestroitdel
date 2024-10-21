@@ -34,6 +34,12 @@
             </x-side-nav-links>
         </li>
         <li>
+            <x-side-nav-links href="/admin/request" :active="request()->is('admin/request')">
+                <i class="bi bi-inbox px-2"></i>
+                Request
+            </x-side-nav-links>
+        </li>
+        <li>
             <x-side-nav-links href="/admin/facility" :active="request()->is('admin/facility')">
                 <i class="bi bi-building px-2"></i>
                 Facility
@@ -45,18 +51,12 @@
                 Report
             </x-side-nav-links>
         </li>
-        <li>
-            <x-side-nav-links href="/admin/request" :active="request()->is('admin/request')">
-                <i class="bi bi-inbox px-2"></i>
-                Request
-            </x-side-nav-links>
-        </li>
     </ul>
     <hr>
     <div class="dropdown">
         <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
            data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <img src="{{ \Illuminate\Support\Facades\Auth::user()->filename != null ? asset('user/' . \Illuminate\Support\Facades\Auth::user()->filename) : asset('user/default-picture.png') }}" alt="" width="32" height="32" class="rounded-circle me-3">
             <strong>{{ \Illuminate\Support\Facades\Auth::user()->username }}</strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">

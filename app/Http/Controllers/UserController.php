@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         if (auth()->check()) {
             // Redirect user based on their role
-            return redirect('/');
+            return redirect('/home');
         }
 
         return view('login');  // Render login page if not authenticated
@@ -44,13 +44,21 @@ class UserController extends Controller
             'username' => 'required|unique:users',
             'phonenumber' => 'required',
             'password' => 'required',
+            'user_img' => '',
         ]);
+
+        $filename = null;
+        if ($request->hasfile('user_img')) {
+            $filename = $request->user_img->getClientOriginalName();
+            $request->filename->move(public_path('user'), $filename);
+        }
 
         $data['name'] = $request->name;
         $data['email'] = $request->email;
         $data['username'] = $request->username;
         $data['phonenumber'] = $request->phonenumber;
         $data['password'] = Hash::make($request->password);
+        $data['filename'] = $filename;
 
 
         $user = User::create($data);

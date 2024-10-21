@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('report', function (Blueprint $table) {
+        Schema::create('area', function (Blueprint $table) {
             $table->id();
-            $table->string('reason');
-            $table->string('location');
-            $table->string('filename');
-            $table->string('rent_id');
-            $table->string('rent_user');
+            $table->string('name');
+            $table->string('detail');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('report');
+        Schema::dropIfExists('area');
     }
 };

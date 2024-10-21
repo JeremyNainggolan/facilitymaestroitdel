@@ -3,11 +3,11 @@
 @section('content')
     <main class="main-content mt-0 ">
         <div class="position-relative min-vh-100 justify-content-center align-items-center d-flex flex-column"
-            style="background-image: url('{{ asset('img/building.jpg') }}'); background-size: cover; background-position: center; position: relative;">
+             style="background-image: url('{{ asset('img/building.jpg') }}'); background-size: cover; background-position: center; position: relative;">
 
             <!-- Blurry Overlay -->
             <span class="mask bg-gradient-dark opacity-6"
-                style="backdrop-filter: blur(4px); position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></span>
+                  style="backdrop-filter: blur(4px); position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></span>
 
             <div class="container position-relative">
                 <div class="row justify-content-center">
@@ -26,13 +26,20 @@
                         <div class="card-body">
                             <form role="form" action="{{ route('register') }}" method="POST">
                                 @csrf
+                                @if($errors->any())
+                                    @foreach($errors->all() as $error)
+                                        <div class="text-danger">
+                                            {{ $error }}
+                                        </div>
+                                    @endforeach
+                                @endif
                                 <div class="mb-3">
                                     <input required autofocus id="name" name="name" type="text"
-                                        class="form-control" placeholder="Name" aria-label="Name">
+                                           class="form-control" placeholder="Name" aria-label="Name">
                                 </div>
                                 <div class="mb-3">
                                     <input required id="email" name="email" type="email" class="form-control"
-                                        placeholder="Email" aria-label="Email">
+                                           placeholder="Email" aria-label="Email">
                                     @if ($errors->has('email'))
                                         <div class="text-danger">
                                             {{ $errors->first('email') }}
@@ -41,7 +48,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <input required id="username" name="username" type="text" class="form-control"
-                                        placeholder="Username" aria-label="Username">
+                                           placeholder="Username" aria-label="Username">
                                     @if ($errors->has('username'))
                                         <div class="text-danger">
                                             {{ $errors->first('username') }}
@@ -51,11 +58,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <input required id="phonenumber" name="phonenumber" type="tel" class="form-control"
-                                        placeholder="Phone Number" aria-label="phoneNumber">
+                                           placeholder="Phone Number" aria-label="phoneNumber">
                                 </div>
                                 <div class="mb-3">
                                     <input required id="password" name="password" type="password" class="form-control"
-                                        placeholder="Password" aria-label="Password">
+                                           placeholder="Password" aria-label="Password">
                                     @if ($errors->has('password'))
                                         <div class="text-danger">
                                             {{ $errors->first('password') }}
@@ -64,24 +71,28 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="formFile" class="form-label">Profile Picture</label>
-                                    <input class="form-control" type="file" id="formFile" name="formFile" accept=".png, .jpg, .jpeg">
+                                    <input class="form-control" type="file" id="user_img" name="user_img"
+                                           accept=".png, .jpg, .jpeg">
                                 </div>
                                 <div class="form-check form-check-info text-start">
                                     <input required class="form-check-input" type="checkbox" value=""
-                                        id="flexCheckDefault">
+                                           id="flexCheckDefault">
                                     <label class="form-check-label" for="flexCheckDefault">
                                         I agree to the <a href="javascript:;"
-                                            class="text-primary text-decoration-none font-weight-bolder">Terms and
+                                                          class="text-primary text-decoration-none font-weight-bolder">Terms
+                                            and
                                             Conditions</a>
                                     </label>
                                 </div>
                                 <div class="text-center">
                                     <button id="submit" name="submit" type="submit"
-                                        class="btn text-white bg-primary p-2 w-100 my-4 mb-2">Sign
-                                        up</button>
+                                            class="btn text-white bg-primary p-2 w-100 my-4 mb-2">Sign
+                                        up
+                                    </button>
                                 </div>
                                 <p class="text-sm mt-3 mb-0">Already have an account? <a href="{{ url('login') }}"
-                                        class="text-primary text-decoration-none font-weight-bolder">Sign in</a></p>
+                                                                                         class="text-primary text-decoration-none font-weight-bolder">Sign
+                                        in</a></p>
                             </form>
                         </div>
                     </div>

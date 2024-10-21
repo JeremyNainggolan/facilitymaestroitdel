@@ -46,8 +46,8 @@
                         <label for="status" class="form-label">Status</label>
                         <select name="status" id="status" class="form-select" required>
                             <option selected>-- Choose Status --</option>
-                            <option value="0">Active</option>
-                            <option value="1">Inactive</option>
+                            <option value="0">Available</option>
+                            <option value="1">Unavailable</option>
                         </select>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                                accept=".png, .jpg, .jpeg">
                     </div>
                     <div class="col-lg-6">
-                        <img src="#" id="item_preview" alt="" class="img-thumbnail"/>   <!--for preview purpose -->
+                        <img src="#" id="item_preview" alt="" height=120rem class="mt-2">   <!--for preview purpose -->
                     </div>
                 </div>
                 <div class="text-center justify-content-center">
@@ -72,7 +72,7 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <script type="text/javascript">
+    <script>
 
         $(document).ready(function (e) {
 

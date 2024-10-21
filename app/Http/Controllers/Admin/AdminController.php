@@ -31,7 +31,6 @@ class AdminController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Jika login berhasil dan user adalah admin
             if (auth()->user()->type == 'admin') {
                 return redirect()->intended(url('admin/dashboard'));
             }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AreaController;
 use \App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -23,9 +24,19 @@ Route::prefix('admin')->group(function () {
         Route::get('dashboard', [AdminController::class, 'dashboard']);
         Route::get('user', [AdminController::class, 'user']);
         Route::get('user/edit', [AdminController::class, 'edit']);
-        Route::get('item', [ItemController::class, 'index']);
-        Route::get('item/add', [ItemController::class, 'add']);
-        Route::post('item/add', [ItemController::class, 'store'])->name('item.add');
+
+        Route::prefix('item')->group(function () {
+            Route::get('/', [ItemController::class, 'index']);
+            Route::get('add', [ItemController::class, 'add']);
+            Route::post('add', [ItemController::class, 'store'])->name('item.add');
+            Route::get('edit/{id}', [ItemController::class, 'edit']);
+            Route::post('edit/{id}', [ItemController::class, 'update']);
+            Route::post('delete', [ItemController::class, 'delete'])->name('item.delete');
+        });
+
+        Route::prefix('area')->group(function () {
+            Route::get('area', [AreaController::class, 'index']);
+        });
     });
 });
 

@@ -38,29 +38,50 @@
                     @foreach($data['items'] as $item)
                         <tr class="">
                             <td>{{ $i++ }}</td>
-                            <td><img alt="" src="{{ asset('item/img/' . $item->filename) }}" height="120rem"></td>
+                            <td><img alt="" src="{{ asset('item/' . $item->filename) }}" height="120rem"></td>
                             <td>{{ $item->item_name }}</td>
                             <td>{{ $item->location }}</td>
                             <td>{{ $item->description }}</td>
                             <td>{{ $item->item_status }}</td>
                             <td>{{ $item->condition }}</td>
                             <td class="text-center">
-                                <a target="_blank" href="" type="button" class="btn"
+                                <a href="{{ url('admin/item/edit/' . $item->item_id) }}" type="button" class="btn"
                                    style="background-color: #8EAEC4"><i
                                         class="bi bi-pencil-square me-2"></i>Edit</a>
-                                <a href="" type="button"
-                                   class="btn bg-danger text-light"><i
+                                <?php $id = $item->item_id?>
+                                <a type="button"
+                                   class="btn bg-danger text-light" data-bs-toggle="modal" data-bs-target="#deleteItem"><i
                                         class="bi bi-trash me-2"></i>Delete</a>
                             </td>
                         </tr>
                     @endforeach
-                @else
-                    <tr>
-                        <td class="fst-italic">No Item Available</td>
-                    </tr>
                 @endif
                 </tbody>
             </table>
         </div>
     </div>
+
+{{--    <!-- Modal -->--}}
+{{--    <div class="modal fade" id="deleteItem" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"--}}
+{{--         aria-labelledby="deleteItem" aria-hidden="true">--}}
+{{--        <div class="modal-dialog modal-dialog-centered">--}}
+{{--            <div class="modal-content">--}}
+{{--                <div class="modal-header">--}}
+{{--                    <h1 class="modal-title fs-5" id="deleteItem">Delete</h1>--}}
+{{--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
+{{--                </div>--}}
+{{--                <div class="modal-body">--}}
+{{--                    Are you sure to delete this Item?--}}
+{{--                </div>--}}
+{{--                <div class="modal-footer">--}}
+{{--                    <form method="POST" action="{{ url('admin/item/delete' . $data['items']  != null ?  : '') }}" role="form">--}}
+{{--                        @csrf--}}
+{{--                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>--}}
+{{--                        @method('DELETE')--}}
+{{--                        <button type="submit" class="btn btn-primary">Yes</button>--}}
+{{--                    </form>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 @endsection

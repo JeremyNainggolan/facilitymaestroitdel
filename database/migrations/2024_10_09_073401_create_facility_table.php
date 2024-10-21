@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('facility', function (Blueprint $table) {
-            $table->id();
+            $table->id()->primary();
+            $table->string('name');
+            $table->string('detail');
+            $table->string('filename');
+            $table->enum('status', ['available', 'unavailable'])->default('available');
+            $table->enum('condition', ['good', 'bad'])->default('good');
             $table->timestamps();
         });
     }

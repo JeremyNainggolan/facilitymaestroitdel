@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('item_name');
             $table->string('location')->nullable();
             $table->string('description')->nullable();
-            $table->enum('item_status', ['active', 'inactive'])->default('active');
+            $table->enum('item_status', ['available', 'unavailable'])->default('available');
             $table->enum('condition', ['good', 'broken', 'lost'])->default('good');
             $table->string('filename')->nullable();
             $table->timestamps();
