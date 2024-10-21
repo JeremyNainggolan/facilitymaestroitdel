@@ -9,14 +9,24 @@ class Item extends Model
 {
     use HasFactory;
 
-    protected $table = "items";
-
     protected $fillable = [
         'item_name',
         'location',
         'description',
+        'item_status',
         'condition',
-        'status',
-        'item_img',
+        'filename',
     ];
+
+    // Relasi many-to-one dengan Area
+    public function area()
+    {
+        return $this->belongsTo(Area::class, 'area_id');
+    }
+
+    // Relasi one-to-many dengan Rent
+    public function rents(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Rent::class, 'item_id');
+    }
 }
