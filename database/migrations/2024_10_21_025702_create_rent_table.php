@@ -4,18 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
         Schema::create('rent', function (Blueprint $table) {
-            $table->id()->primary();
+            $table->id('rent_id')->primary();
             $table->string('name');
-            $table->integer('item_id', false);
-            $table->integer('user_id', false);
+            $table->unsignedBigInteger('item_id', false);
+            $table->foreign('item_id')->references('item_id')->on('item');
+            $table->unsignedBigInteger('facility_id', false)->nullable();
+            $table->foreign('facility_id')->references('facility_id')->on('facility');
+            $table->unsignedBigInteger('user_id', false);
+            $table->foreign('user_id')->references('user_id')->on('user');
             $table->string('rent_user');
             $table->enum('status', ['pending', 'accepted', 'rejected'])->default('pending');
             $table->date('request_date');
