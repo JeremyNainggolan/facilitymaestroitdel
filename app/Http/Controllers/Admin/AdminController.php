@@ -46,19 +46,22 @@ class AdminController extends Controller
     }
     public function dashboard()
     {
+        $data['page_header'] = 'Dashboard';
         $data['page_title'] = 'Dashboard';
-        $data['total_item'] = DB::table('items')->count();
+        $data['total_item'] = DB::table('item')->count();
         $data['total_user'] = DB::table('users')->count();
         return view('admin.dashboard', compact('data'));
     }
     public function user()
     {
+        $data['page_header'] = 'User';
         $data['page_title'] = 'Users';
         $data['user'] = DB::table('users')->get();
         return view('admin.user.index', compact('data'));
     }
     public function edit()
     {
+        $data['page_header'] = 'User';
         $data['page_title'] = 'Edit User';
         return view('admin.user.edit', compact('data'));
     }

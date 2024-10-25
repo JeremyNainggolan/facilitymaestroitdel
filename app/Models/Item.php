@@ -9,6 +9,8 @@ class Item extends Model
 {
     use HasFactory;
 
+    protected $table = 'item';
+
     protected $fillable = [
         'item_name',
         'location',
@@ -18,10 +20,10 @@ class Item extends Model
         'filename',
     ];
 
-    // Relasi many-to-one dengan Area
-    public function area()
+    // Relasi many-to-one dengan Storage
+    public function storage()
     {
-        return $this->belongsTo(Area::class, 'area_id');
+        return $this->belongsTo(Storage::class, 'storage_id');
     }
 
     // Relasi one-to-many dengan Rent

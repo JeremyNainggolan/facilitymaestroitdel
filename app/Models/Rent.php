@@ -9,6 +9,8 @@ class Rent extends Model
 {
     use HasFactory;
 
+    protected $table = 'rent';
+
     protected $fillable = [
         'name',
         'item_id',

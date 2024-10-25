@@ -1,14 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\AreaController;
+use App\Http\Controllers\Admin\RentController;
+use App\Http\Controllers\Admin\StorageController;
 use \App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('login');
-});
 
 Route::get('/register', [UserController::class, 'register']);
 Route::post('/register', [UserController::class, 'store'])->name('register');
@@ -20,10 +17,11 @@ Route::prefix('admin')->group(function () {
     Route::post('login', [AdminController::class, 'post_login'])->name('admin.login');
 
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
-        Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
+        Route::get('/', [AdminController::class, 'dashboard']);
         Route::get('dashboard', [AdminController::class, 'dashboard']);
         Route::get('user', [AdminController::class, 'user']);
         Route::get('user/edit', [AdminController::class, 'edit']);
+        Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
 
         Route::prefix('item')->group(function () {
             Route::get('/', [ItemController::class, 'index']);
@@ -34,13 +32,19 @@ Route::prefix('admin')->group(function () {
             Route::post('delete', [ItemController::class, 'delete'])->name('item.delete');
         });
 
-        Route::prefix('area')->group(function () {
-            Route::get('area', [AreaController::class, 'index']);
+        Route::prefix('storage')->group(function () {
+            Route::get('/', [StorageController::class, 'index']);
+            Route::get('/add', [StorageController::class, 'add']);
+        });
+
+        Route::prefix('rent')->group(function () {
+            Route::get('/', [RentController::class, 'index']);
         });
     });
 });
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/', [UserController::class, 'home']);
     Route::get('/home', [UserController::class, 'home']);
     Route::get('/rent', [UserController::class, 'rent']);
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');

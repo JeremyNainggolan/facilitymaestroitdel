@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('area', function (Blueprint $table) {
-            $table->id();
+        Schema::create('storage', function (Blueprint $table) {
+            $table->id()->primary();
             $table->string('name');
             $table->string('detail');
+            $table->integer('capacity');
+            $table->string('filename')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('area');
+        Schema::dropIfExists('storage');
     }
 };

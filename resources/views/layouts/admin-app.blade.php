@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('asset/vendor/bootstrap/icon/font/bootstrap-icons.min.css') }}">
 </head>
 
-<body style="font-family: 'Roboto', serif; background-color: #E7E7E7">
+<body style="font-family: 'Roboto', serif; background-color: #f6f9ff">
 <div class="d-flex">
     <aside>
         <x-side-nav-bar></x-side-nav-bar>

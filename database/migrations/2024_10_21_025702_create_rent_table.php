@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('facility_id', false)->nullable();
             $table->foreign('facility_id')->references('facility_id')->on('facility');
             $table->unsignedBigInteger('user_id', false);
-            $table->foreign('user_id')->references('user_id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('rent_user');
             $table->enum('status', ['pending', 'accepted', 'rejected'])->default('pending');
             $table->date('request_date');

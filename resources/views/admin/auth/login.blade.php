@@ -12,25 +12,22 @@
                                 <h2 class="fw-bolder text-center mx-2 py-3">- Administration Login -</h2>
                                 <form role="form" method="POST" action="{{ route('admin.login') }}">
                                     @csrf
+                                    @if($errors->any())
+                                        @foreach($errors->all() as $error)
+                                            <div class="text-danger">
+                                                {{ $error }}
+                                            </div>
+                                        @endforeach
+                                    @endif
                                     <div class="input-group input-group-outline my-3 px-2">
                                         <input required value="{{ old('email') }}" autofocus id="email" name="email"
                                                type="email"
                                                class="form-control" placeholder="Email" aria-label="Email">
-                                        @if ($errors->has('email'))
-                                            <div class="text-danger">
-                                                {{ $errors->first('email') }}
-                                            </div>
-                                        @endif
                                     </div>
                                     <div class="input-group input-group-outline mb-2 px-2">
                                         <input required id="password" name="password" type="password"
                                                class="form-control"
                                                placeholder="Password" aria-label="Password">
-                                        @if ($errors->has('password'))
-                                            <div class="text-danger">
-                                                {{ $errors->first('password') }}
-                                            </div>
-                                        @endif
                                     </div>
                                     <div class="text-center">
                                         <button id="submit" name="submit" type="submit"

@@ -2549,7 +2549,7 @@
     return clippingParents.filter(function (clippingParent) {
       return isElement(clippingParent) && contains(clippingParent, clipperElement) && getNodeName(clippingParent) !== 'body';
     });
-  } // Gets the maximum area that the element is visible in due to any number of
+  } // Gets the maximum storage that the element is visible in due to any number of
   // clipping parents
 
 

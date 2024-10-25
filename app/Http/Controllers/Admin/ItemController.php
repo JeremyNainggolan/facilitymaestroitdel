@@ -12,13 +12,15 @@ class ItemController extends Controller
 {
     public function index()
     {
+        $data['page_header'] = 'Item';
         $data['page_title'] = 'Items';
-        $data['items'] = DB::table('items')->get();
+        $data['items'] = Item::all();
         return view('admin.item.index', compact('data'));
     }
 
     public function add()
     {
+        $data['page_header'] = 'Item';
         $data['page_title'] = 'Add Item';
         return view('admin.item.add', compact('data'));
     }
@@ -46,7 +48,7 @@ class ItemController extends Controller
         $data['item_status'] = $request->status == 0 ? 'available' : 'unavailable';
         $data['filename'] = $img_name;
 
-        $item = DB::table('items')->insert($data);
+        $item = DB::table('item')->insert($data);
 
         if (!$item) {
             return redirect(url('/admin/item/add'))->with('error', 'Item Not Added');
@@ -58,22 +60,22 @@ class ItemController extends Controller
 
     public function edit($id)
     {
+        $data['page_header'] = 'Item';
         $data['page_title'] = 'Edit Item';
-        $data['item'] = DB::table('items')->where('item_id', $id)->first();
+        $data['item'] = DB::table('item')->where('item_id', $id)->first();
         return view('admin.item.edit', compact('data'));
     }
 
     public function update(Request $request, $id)
     {
-
-        $item = DB::table('items')->where('item_id', $id)->first();
+        $item = DB::table('item')->where('item_id', $id)->first();
 
         $img_name = null;
         if ($request->hasFile('item_img')) {
             $img_name = time() . '.' . $request->item_img->getClientOriginalExtension();
             $request->item_img->move(public_path('item'), $img_name);
 
-            $affected = DB::table('items')
+            $affected = DB::table('item')
                 ->where('item_id', $id)
                 ->update([
                     'item_name' => $request->input('item_name'),
@@ -84,7 +86,7 @@ class ItemController extends Controller
                     'filename' => $img_name,
                 ]);
         } else {
-            $affected = DB::table('items')
+            $affected = DB::table('item')
                 ->where('item_id', $id)
                 ->update([
                     'item_name' => $request->input('item_name'),

@@ -1,5 +1,5 @@
-<div class="d-flex flex-column flex-shrink-0 text-dark p-4 vh-100 position-sticky bg-light"
-     style="width: 30vh; top: 0;">
+<div class="d-flex flex-column flex-shrink-0 text-dark p-4 vh-100 position-sticky shadow-sm"
+     style="width: 30vh; top: 0; background-color: #ffffff">
     <a href="{{ url('admin/dashboard') }}"
        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <img src="{{ asset('svg/logo-no-background.svg') }}" class="img-fluid p-4" alt="Logo">
@@ -7,7 +7,7 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li>
-            <x-side-nav-links href="/admin/dashboard" :active="request()->is('admin/dashboard')">
+            <x-side-nav-links href="/admin/dashboard" :active="request()->is('admin/dashboard') || request()->is('admin')">
                 <i class="bi bi-command px-2"></i>
                 Dashboard
             </x-side-nav-links>
@@ -27,16 +27,16 @@
             </x-side-nav-links>
         </li>
         <li>
-            <x-side-nav-links href="/admin/area"
-                              :active="request()->is('admin/area') || request()->is('admin/area/edit')">
+            <x-side-nav-links href="/admin/storage"
+                              :active="request()->is('admin/storage') || request()->is('admin/storage/edit') || request()->is('admin/storage/add')">
                 <i class="bi bi-archive px-2"></i>
-                Area
+                Storage
             </x-side-nav-links>
         </li>
         <li>
-            <x-side-nav-links href="/admin/request" :active="request()->is('admin/request')">
+            <x-side-nav-links href="/admin/rent" :active="request()->is('admin/rent')">
                 <i class="bi bi-inbox px-2"></i>
-                Request
+                Rent
             </x-side-nav-links>
         </li>
         <li>
