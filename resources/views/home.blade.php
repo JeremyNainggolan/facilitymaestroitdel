@@ -6,8 +6,8 @@
     <div class="position-relative min-vh-100 justify-content-center align-items-start d-flex flex-column px-5"
          style="background-image: url('{{ asset('img/tobalake.jpg') }}'); background-size: cover; background-position: center;">
         <span class="mask bg-gradient-dark opacity-6"
-              style="backdrop-filter: blur(4px); position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></span>
-        <!-- Overlay Content -->
+              style="backdrop-filter: blur(4px); position: absolute; top: 0; left: 0;width: 100%; height: 100%;"></span>
+        <!-- Overlay Content --> 
         <div class="text-white position-relative">
             <h3 class="display-5 fw-bold py-0">Facility Maestro IT Del</h3>
             <h1 class="display-1 fw-bold">Hello, {{ \Illuminate\Support\Facades\Auth::user()->name }}</h1>
