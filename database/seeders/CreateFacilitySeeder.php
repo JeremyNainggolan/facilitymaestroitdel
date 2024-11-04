@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Facility;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-return new class extends Seeder
+class CreateFacilitySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,8 +19,6 @@ return new class extends Seeder
                 'name' => 'Ruang Serbaguna',
                 'detail' => 'Ruang yang dapat digunakan untuk berbagai keperluan seperti seminar, pertemuan, dan acara.',
                 'filename' => 'room1.jpg',
-                'status' => 'Reject',
-                'condition' => 'good',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -116,7 +115,7 @@ return new class extends Seeder
         ];
 
         foreach ($facilities as $facility) {
-            DB::table('facility')->insert($facility);
+            Facility::create($facility);
         }
     }
 };

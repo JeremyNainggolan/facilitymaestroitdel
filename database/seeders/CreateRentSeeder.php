@@ -152,7 +152,7 @@ class CreateRentSeeder extends Seeder
         );
 
         foreach ($Rent as $rent) {
-            Rent::table('rents')->insert($rent);
+            Rent::create($rent);
         }
     }
 }

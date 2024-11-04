@@ -3,7 +3,8 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\RentController;
 use App\Http\Controllers\Admin\StorageController;
-use \App\Http\Controllers\Admin\ItemController;
+use App\Http\Controllers\Admin\ItemController;
+use App\Http\Controllers\Admin\FacilityController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,12 @@ Route::prefix('admin')->group(function () {
 
         Route::prefix('rent')->group(function () {
             Route::get('/', [RentController::class, 'index']);
+            Route::get('/request', [RentController::class, 'index']);
+            Route::get('/active', [RentController::class, 'active']);
+        });
+
+        Route::prefix('facility')->group(function () {
+            Route::get('/', [FacilityController::class, 'index']);
         });
     });
 });
