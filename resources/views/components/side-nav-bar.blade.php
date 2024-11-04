@@ -34,7 +34,7 @@
             </x-side-nav-links>
         </li>
         <li>
-            <x-side-nav-links href="/admin/rent" :active="request()->is('admin/rent')">
+            <x-side-nav-links href="/admin/rent" :active="request()->is('admin/rent') || request()->is('admin/rent/request') || request()->is('admin/rent/active')">
                 <i class="bi bi-inbox px-2"></i>
                 Rent
             </x-side-nav-links>

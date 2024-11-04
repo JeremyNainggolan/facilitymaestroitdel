@@ -6,8 +6,9 @@
 
         <h3 class="mb-4"><?= $data['page_header'] ?></h3>
         <div class="card p-4 shadow border-light d-flex">
-            <div class="card-title fs-5 fw-medium mb-3">{{ $data['page_title'] . ' Detail' }}</div>
-            <x-nav-tabs></x-nav-tabs>
+            <div class="card-title fs-5 fw-medium mb-3">{{ $data['page_title'] . ' Detail' }}<a
+                    href="{{ url('admin/item/add') }}" class="text-decoration-none text-dark"><i
+                        class="bi bi-node-plus-fill ms-2"></i></a></div>
             @if (session()->has('error'))
                 <div class="text-danger">
                     {{ session('error') }}
@@ -23,26 +24,27 @@
                     <thead>
                     <tr class="">
                         <th scope="col">#</th>
-                        <th scope="col">Rent User</th>
-                        <th scope="col">Facility Name</th>
+                        <th scope="col">Picture</th>
                         <th scope="col">Item Name</th>
-                        <th scope="col">Request Date</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Condition</th>
+                        <th scope="col">Report Date</th>
                         <th scope="col" class="text-center">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php $i = 1 ?>
-                    @if(!empty($data['rents']))
-                        @foreach($data['rents'] as $rent)
+                    @if(!empty($data['reports']))
+                        @foreach($data['reports'] as $report)
                             <tr class="">
                                 <td>{{ $i++ }}</td>
-                                <td><img alt="" src="{{ asset('rent/' . $rent['filename']) }}" height="120rem"></td>
-                                <td>{{ $rent['name'] }}</td>
-                                <td>{{ $rent['detail'] }}</td>
-                                <td>{{ $rent['capacity'] }}</td>
+                                <td><img alt=""
+                                         src="{{ asset($report['filename'] != null ? 'report/' . $report['filename'] : 'report/default.png') }}"
+                                         height="120rem"></td>
+                                <td>{{ $report['item_name'] }}</td>
+                                <td>{{ $report['condition'] }}</td>
+                                <td>{{ $facility['report_date'] }}</td>
                                 <td class="text-center">
-                                    <a href="{{ url('admin/rent/detail/' . $rent['rent_id']) }}" type="button"
+                                    <a href="{{ url('admin/report/detail/' . $facility['report_id']) }}" type="button"
                                        class="btn"
                                        style="background-color: #8EAEC4"><i
                                             class="bi bi-pencil-square me-2"></i>Detail</a>
@@ -51,8 +53,8 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="7" class="fst-italic ">
-                                No Request Available
+                            <td colspan="6" class="fst-italic">
+                                No Data Available
                             </td>
                         </tr>
                     @endif

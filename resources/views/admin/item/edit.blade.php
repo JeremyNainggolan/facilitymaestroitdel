@@ -8,7 +8,7 @@
         <div class="card p-4 shadow border-light d-flex">
             <div
                 class="card-title fs-5 fw-medium mb-3">{{ $data['page_title'] . ' - ' . $data['item']->item_name}}</div>
-            <form method="post" action="{{ url('admin/item/edit/'. $data['item']->item_id) }}">
+            <form method="post" action="{{ url('admin/item/edit/'. $data['item']->item_id) }}" enctype="multipart/form-data">
                 @csrf
                 @if (session()->has('error'))
                     <div class="text-danger fw-bolder">

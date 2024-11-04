@@ -22,7 +22,8 @@
 <body style="font-family: 'Roboto', serif; background-color: #f6f9ff">
 <div class="d-flex">
     <aside>
-        <x-side-nav-bar></x-side-nav-bar>
+{{--        <x-side-nav-bar></x-side-nav-bar>--}}
+        @include('components.side-nav-bar')
     </aside>
     @yield('content')
 </div>
