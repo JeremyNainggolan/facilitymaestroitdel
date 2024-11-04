@@ -15,14 +15,12 @@ return new class extends Migration {
             $table->string('reason');
             $table->string('location');
             $table->string('filename');
-            $table->unsignedBigInteger('rent_id', false)->nullable();
-            $table->foreign('rent_id')->references('rent_id')->on('rent');
-            $table->unsignedBigInteger('facility_id', false);
-            $table->foreign('facility_id')->references('facility_id')->on('facility');
-            $table->unsignedBigInteger('item_id', false);
-            $table->foreign('item_id')->references('item_id')->on('item');
+            $table->enum('condition', ['good', 'bad'])->default('good');
+            $table->date('report_date');
+            $table->unsignedBigInteger('rent_id', false);
+            $table->unsignedBigInteger('facility_id', false)->nullable();
+            $table->unsignedBigInteger('item_id', false)->nullable();
             $table->unsignedBigInteger('user_id', false);
-            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

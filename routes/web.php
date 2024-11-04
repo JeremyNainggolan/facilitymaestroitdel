@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\RentController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\StorageController;
 use App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\Admin\FacilityController;
@@ -46,6 +47,10 @@ Route::prefix('admin')->group(function () {
 
         Route::prefix('facility')->group(function () {
             Route::get('/', [FacilityController::class, 'index']);
+        });
+
+        Route::prefix('report')->group(function () {
+            Route::get('/', [ReportController::class, 'index']);
         });
     });
 });
