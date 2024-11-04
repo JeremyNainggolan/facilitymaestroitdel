@@ -9,6 +9,7 @@ class Report extends Model
 {
     use HasFactory;
 
+    protected $table = 'report';
     protected $fillable = [
         'reason',
         'location',
