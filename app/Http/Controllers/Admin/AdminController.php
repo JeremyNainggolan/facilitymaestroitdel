@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -56,7 +57,7 @@ class AdminController extends Controller
     {
         $data['page_header'] = 'User';
         $data['page_title'] = 'Users';
-        $data['user'] = DB::table('users')->get();
+        $data['user'] = User::all()->toArray();
         return view('admin.user.index', compact('data'));
     }
     public function edit()

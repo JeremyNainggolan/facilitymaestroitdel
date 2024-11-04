@@ -11,8 +11,16 @@ class RentController extends Controller
     {
         $data['page_header'] = 'Rent';
         $data['page_title'] = 'Rents';
-        $data['rent'] = Rent::all();
+        $data['rents'] = Rent::all()->toArray();
         return view('admin.rent.index', compact('data'));
+    }
+
+    public function active()
+    {
+        $data['page_header'] = 'Rent';
+        $data['page_title'] = 'Rents';
+        $data['rents'] = Rent::all()->toArray();
+        return view('admin.rent.active', compact('data'));
     }
 
 

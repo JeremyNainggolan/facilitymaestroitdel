@@ -11,7 +11,7 @@ class StorageController extends Controller
     {
         $data['page_header'] = 'Storage';
         $data['page_title'] = 'Storages';
-        $data['storages'] = Storage::all();
+        $data['storages'] = Storage::all()->toArray();
         return view('admin.storage.index', compact('data'));
     }
 

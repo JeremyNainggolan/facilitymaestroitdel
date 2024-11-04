@@ -14,7 +14,7 @@ class ItemController extends Controller
     {
         $data['page_header'] = 'Item';
         $data['page_title'] = 'Items';
-        $data['items'] = Item::all();
+        $data['items'] = Item::all()->toArray();
         return view('admin.item.index', compact('data'));
     }
 
