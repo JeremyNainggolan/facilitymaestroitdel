@@ -6,9 +6,7 @@
 
         <h3 class="mb-4"><?= $data['page_header'] ?></h3>
         <div class="card p-4 shadow border-light d-flex">
-            <div class="card-title fs-5 fw-medium mb-3">{{ $data['page_title'] . ' Detail' }}<a
-                    href="{{ url('admin/item/add') }}" class="text-decoration-none text-dark"><i
-                        class="bi bi-node-plus-fill ms-2"></i></a></div>
+            <div class="card-title fs-5 fw-medium mb-3">{{ $data['page_title'] . ' Detail' }}</div>
             @if (session()->has('error'))
                 <div class="text-danger">
                     {{ session('error') }}

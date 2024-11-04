@@ -40,7 +40,7 @@
             </x-side-nav-links>
         </li>
         <li>
-            <x-side-nav-links href="/admin/facility" :active="request()->is('admin/facility')">
+            <x-side-nav-links href="/admin/facility" :active="request()->is('admin/facility') || request()->is('admin/facility/add') || request()->is('admin/facility/edit')">
                 <i class="bi bi-building px-2"></i>
                 Facility
             </x-side-nav-links>

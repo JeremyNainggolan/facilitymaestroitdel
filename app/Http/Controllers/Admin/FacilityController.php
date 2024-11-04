@@ -14,4 +14,12 @@ class FacilityController extends Controller
 
         return view('admin.facility.index', compact('data'));
     }
+
+    public function add()
+    {
+        $data['page_header'] = 'Facility';
+        $data['page_title'] = 'Add Facility';
+
+        return view('admin.facility.add', compact('data'));
+    }
 }

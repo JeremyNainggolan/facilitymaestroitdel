@@ -7,7 +7,7 @@
         <h3 class="mb-4"><?= $data['page_header'] ?></h3>
         <div class="card p-4 shadow border-light d-flex">
             <div class="card-title fs-5 fw-medium mb-3">{{ $data['page_title'] . ' Detail' }}<a
-                    href="{{ url('admin/item/add') }}" class="text-decoration-none text-dark"><i
+                    href="{{ url('admin/facility/add') }}" class="text-decoration-none text-dark"><i
                         class="bi bi-node-plus-fill ms-2"></i></a></div>
             @if (session()->has('error'))
                 <div class="text-danger">
@@ -46,7 +46,7 @@
                                 <td>{{ $facility['status'] }}</td>
                                 <td>{{ $facility['condition'] }}</td>
                                 <td class="text-center">
-                                    <a href="{{ url('admin/item/edit/' . $facility['facility_id']) }}" type="button"
+                                    <a href="{{ url('admin/facility/edit/' . $facility['facility_id']) }}" type="button"
                                        class="btn"
                                        style="background-color: #8EAEC4"><i
                                             class="bi bi-pencil-square me-2"></i>Edit</a>

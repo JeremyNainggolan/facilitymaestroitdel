@@ -47,6 +47,7 @@ Route::prefix('admin')->group(function () {
 
         Route::prefix('facility')->group(function () {
             Route::get('/', [FacilityController::class, 'index']);
+            Route::get('/add', [FacilityController::class, 'add']);
         });
 
         Route::prefix('report')->group(function () {

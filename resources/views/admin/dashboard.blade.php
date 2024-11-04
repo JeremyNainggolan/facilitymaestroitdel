@@ -50,8 +50,7 @@
                         Facility Available
                     </div>
                     <div class="card-body">
-                        <p class="pb-2 fs-2 fw-bolder"><i class="bi bi-building pe-3" style="font-size: 2.4rem"></i>3
-                            Facilities</p>
+                        <p class="pb-2 fs-2 fw-bolder"><i class="bi bi-building pe-3" style="font-size: 2.4rem"></i>{{ $data['total_facility'] > 1 ? $data['total_facility'] . ' Facilities' : $data['total_facility'] . ' Facility' }}</p>
                         <a href="{{ url('admin/facility') }}" class="text-decoration-none fst-italic"
                            style="color: #777777">View Detail</a>
                     </div>
@@ -64,7 +63,7 @@
                     </div>
                     <div class="card-body">
                         <p class="pb-2 fs-2 fw-bolder"><i class="bi bi-exclamation-octagon pe-3"
-                                                          style="font-size: 2.4rem"></i>2 Report</p>
+                                                          style="font-size: 2.4rem"></i>{{ $data['total_report'] > 1 ? $data['total_report'] . ' Reports' : $data['total_report'] . ' Report' }}</p>
                         <a href="{{ url('admin/report') }}" class="text-decoration-none fst-italic"
                            style="color: #777777">View Detail</a>
                     </div>
