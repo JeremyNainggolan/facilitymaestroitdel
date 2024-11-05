@@ -47,6 +47,56 @@ class StorageController extends Controller
 
     }
 
+    public function edit($id)
+    {
+        $data['page_header'] = 'Storage';
+        $data['page_title'] = 'Edit Storage';
+        $data['storage'] = DB::table('storage')->where('id', $id)->first();
+        return view('admin.storage.edit', compact('data'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $storage = DB::table('storage')->where('id', $id)->first();
+
+        $img_name = null;
+        if ($request->hasFile('storage_img')) {
+            if ($storage) {
+                $imagePath = public_path('storage/') . $storage->filename;
+
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+            $img_name = time() . '.' . $request->storage_img->getClientOriginalExtension();
+            $request->storage_img->move(public_path('storage'), $img_name);
+
+            $affected = DB::table('storage')
+                ->where('id', $id)
+                ->update([
+                    'name' => $request->input('name'),
+                    'detail' => $request->input('description'),
+                    'capacity' => $request->input('capacity'),
+                    'filename' => $img_name,
+                ]);
+        } else {
+            $affected = DB::table('storage')
+                ->where('id', $id)
+                ->update([
+                    'name' => $request->input('name'),
+                    'detail' => $request->input('description'),
+                    'capacity' => $request->input('capacity'),
+                ]);
+        }
+
+        if (!$affected) {
+            return redirect(url('/admin/storage/edit/' . $id))->with('error', 'Storage Not Updated');
+        }
+
+        return redirect(url('/admin/storage'))->with('success', 'Storage Successfully Updated');
+    }
+
+
     public function delete(Request $request)
     {
         $storage = Storage::where('id', $request->input('id'))->first();
@@ -60,7 +110,7 @@ class StorageController extends Controller
 
             $storage->delete();
 
-            return redirect()->back()->with('success', 'Storage deleted successfully');
+            return redirect()->back()->with('success', 'Storage Successfully Deleted');
         }
 
         return redirect()->back()->with('error', 'Storage failed to delete');

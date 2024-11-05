@@ -43,6 +43,8 @@ Route::prefix('admin')->group(function () {
             Route::get('/', [StorageController::class, 'index']);
             Route::get('/add', [StorageController::class, 'add']);
             Route::post('/add', [StorageController::class, 'store'])->name('storage.add');
+            Route::get('edit/{id}', [StorageController::class, 'edit']);
+            Route::post('edit/{id}', [StorageController::class, 'update']);
             Route::post('delete', [StorageController::class, 'delete'])->name('storage.delete');
         });
 

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('storage', function (Blueprint $table) {
             $table->id()->primary();
             $table->string('name');
-            $table->string('detail');
-            $table->integer('capacity');
+            $table->string('detail')->nullable();
+            $table->integer('capacity')->nullable();
             $table->string('filename')->nullable();
             $table->timestamps();
         });
