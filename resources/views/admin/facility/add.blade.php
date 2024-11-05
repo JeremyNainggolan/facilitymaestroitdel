@@ -8,7 +8,7 @@
                 <h6 class="text-capitalize">{{ $data['page_header'] }}</h6>
             </div>
             <div class="mx-4">
-            <form role="form" method="POST" action="{{ route('item.add') }}" enctype="multipart/form-data">
+            <form role="form" method="POST" action="{{ route('facility.add') }}" enctype="multipart/form-data">
                 @csrf
                 @if($errors->any())
                     @foreach($errors->all() as $error)
@@ -42,13 +42,13 @@
                         <label for="condition" class="form-label">Condition</label>
                         <select name="condition" id="condition" class="form-select" required>
                             <option selected>-- Choose Condition --</option>
-                            <option value="broken">Broken</option>
+                            <option value="broken">Bad</option>
                             <option value="good">Good</option>
                         </select>
                     </div>
                     <div class="col-lg-5">
-                        <label for="item_img" class="form-label">Picture</label>
-                        <input class="form-control" type="file" id="item_img" name="item_img"
+                        <label for="facility_img" class="form-label">Picture</label>
+                        <input class="form-control" type="file" id="facility_img" name="facility_img"
                                accept=".png, .jpg, .jpeg">
                     </div>
                     <div class="col-lg-4">
@@ -71,7 +71,7 @@
         $(document).ready(function (e) {
 
 
-            $('#item_img').change(function () {
+            $('#facility_img').change(function () {
 
                 let reader = new FileReader();
 

@@ -57,6 +57,10 @@ Route::prefix('admin')->group(function () {
         Route::prefix('facility')->group(function () {
             Route::get('/', [FacilityController::class, 'index']);
             Route::get('/add', [FacilityController::class, 'add']);
+            Route::post('/add', [FacilityController::class, 'store'])->name('facility.add');
+            Route::get('/edit/{id}', [FacilityController::class, 'edit']);
+            Route::post('/edit/{id}', [FacilityController::class, 'update']);
+            Route::post('delete', [FacilityController::class, 'delete'])->name('facility.delete');
         });
 
         Route::prefix('report')->group(function () {
