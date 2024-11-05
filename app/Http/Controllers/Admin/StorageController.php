@@ -75,7 +75,7 @@ class StorageController extends Controller
                 ->where('id', $id)
                 ->update([
                     'name' => $request->input('name'),
-                    'detail' => $request->input('description'),
+                    'detail' => $request->input('detail'),
                     'capacity' => $request->input('capacity'),
                     'filename' => $img_name,
                 ]);
@@ -84,7 +84,7 @@ class StorageController extends Controller
                 ->where('id', $id)
                 ->update([
                     'name' => $request->input('name'),
-                    'detail' => $request->input('description'),
+                    'detail' => $request->input('detail'),
                     'capacity' => $request->input('capacity'),
                 ]);
         }
