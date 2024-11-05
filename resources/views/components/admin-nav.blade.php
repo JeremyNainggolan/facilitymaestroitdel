@@ -19,7 +19,7 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown pe-2 d-flex align-items-center mx-3">
-                    <a href="#" class="nav-link text-white p-0 show" id="dropdownMenuButton"
+                    <a href="#" class="nav-link text-white p-0" id="dropdownMenuButton"
                        data-bs-toggle="dropdown" aria-expanded="true">
                         <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
                     </a>

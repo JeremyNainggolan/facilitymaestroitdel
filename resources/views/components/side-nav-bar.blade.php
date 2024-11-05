@@ -24,14 +24,14 @@
             </li>
             <li>
                 <x-side-nav-links href="/admin/item"
-                                  :active="request()->is('admin/item') || request()->is('admin/item/add') || request()->is('admin/item/edit') || request()->is('admin/detail')">
+                                  :active="request()->is('admin/item') || request()->is('admin/item/add') || request()->is('admin/item/edit') || request()->is('admin/item/edit/*')">
                     <i class="bi bi-tv px-2"></i>
                     Item
                 </x-side-nav-links>
             </li>
             <li>
                 <x-side-nav-links href="/admin/storage"
-                                  :active="request()->is('admin/storage') || request()->is('admin/storage/edit') || request()->is('admin/storage/add')">
+                                  :active="request()->is('admin/storage') || request()->is('admin/storage/edit') || request()->is('admin/storage/add') || request()->is('admin/storage/edit/*')">
                     <i class="bi bi-archive px-2"></i>
                     Storage
                 </x-side-nav-links>
@@ -43,7 +43,7 @@
                 </x-side-nav-links>
             </li>
             <li>
-                <x-side-nav-links href="/admin/facility" :active="request()->is('admin/facility') || request()->is('admin/facility/add') || request()->is('admin/facility/edit')">
+                <x-side-nav-links href="/admin/facility" :active="request()->is('admin/facility') || request()->is('admin/facility/add') || request()->is('admin/facility/edit') || request()->is('admin/facility/edit/*')">
                     <i class="bi bi-building px-2"></i>
                     Facility
                 </x-side-nav-links>
