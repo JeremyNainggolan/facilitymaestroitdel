@@ -1,75 +1,126 @@
 @extends('layouts/admin-app')
 @section('title', $data['page_title'])
 @section('content')
-    <div class="col-lg-9 col-md-6 p-4">
-        <p>Pages / {{ $data['page_header'] }}</p>
-
-        <h3 class="mb-4"><?= $data['page_header'] ?></h3>
-        <div class="row">
-            <div class="col-lg-4 col-md-6 col-lg-3">
-                <div class="card text-start shadow border-light">
-                    <div class="card-title mx-3 mt-4 fw-medium">
-                        Total Users
-                    </div>
-                    <div class="card-body">
-                        <p class="pb-2 fs-2 fw-bolder"><i class="bi bi-people pe-3"
-                                                          style="font-size: 2.4rem"></i>{{ $data['total_user'] > 1 ? $data['total_user'] . ' Users' : $data['total_user'] . ' User' }}
-                        </p>
-                        <a href="{{ url('admin/user') }}" class="text-decoration-none fst-italic"
-                           style="color: #777777">View Detail</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-lg-3">
-                <div class="card text-start shadow border-light">
-                    <div class="card-title mx-3 mt-4 fw-medium">
-                        Total Items
-                    </div>
-                    <div class="card-body">
-                        <p class="pb-2 fs-2 fw-bolder"><i class="bi bi-laptop pe-3" style="font-size: 2.4rem"></i>{{ $data['total_item'] > 1 ? $data['total_item'] . ' Items' : $data['total_item'] . ' Item' }}</p>
-                        <a href="{{ url('admin/item') }}" class="text-decoration-none fst-italic"
-                           style="color: #777777">View Detail</a>
+    <x-admin-nav>{{ $data['page_title'] }}</x-admin-nav>
+    <div class="container-fluid py-4">
+        <div class="row my-4">
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <div class="card">
+                    <div class="card-body p-3">
+                        <div class="row my-1">
+                            <div class="col-8">
+                                <div class="numbers">
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total User</p>
+                                    <h5 class="font-weight-bolder mt-2">
+                                        {{ $data['total_user'] > 1 ? $data['total_user'] . ' Users' : $data['total_user'] . ' User' }}
+                                    </h5>
+                                    <p class="mb-0">
+                                        <span class="text-secondary text-sm font-weight-bolder"><a
+                                                href="{{ url('admin/user') }}"
+                                                class="text-decoration-none text-secondary">View Detail</a></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-4 text-end">
+                                <i class="bi bi-person-circle text-primary text-3xl" aria-hidden="true"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-lg-3">
-                <div class="card text-start shadow border-light">
-                    <div class="card-title mx-3 mt-4 fw-medium">
-                        Rent Status
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <div class="card">
+                    <div class="card-body p-3">
+                        <div class="row my-1">
+                            <div class="col-8">
+                                <div class="numbers">
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Item</p>
+                                    <h5 class="font-weight-bolder mt-2">
+                                        {{ $data['total_item'] > 1 ? $data['total_item'] . ' Items' : $data['total_item'] . ' Item' }}
+                                    </h5>
+                                    <p class="mb-0">
+                                        <span class="text-secondary text-sm font-weight-bolder"><a
+                                                href="{{ url('admin/item') }}"
+                                                class="text-decoration-none text-secondary">View Detail</a></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-4 text-end">
+                                <i class="bi bi-laptop text-success text-3xl" aria-hidden="true"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <div class="card">
+                    <div class="card-body p-3">
+                        <div class="row my-1">
+                            <div class="col-8">
+                                <div class="numbers">
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Rent Status</p>
+                                    <h5 class="font-weight-bolder mt-2">
+                                        ...
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="col-4 text-end">
+                                <i class="bi bi-app-indicator text-danger text-4xl" aria-hidden="true"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row pt-4">
-            <div class="col-lg-4 col-md-6 col-lg-3">
-                <div class="card text-start shadow border-light">
-                    <div class="card-title mx-3 mt-4 fw-medium">
-                        Facility Available
-                    </div>
-                    <div class="card-body">
-                        <p class="pb-2 fs-2 fw-bolder"><i class="bi bi-building pe-3" style="font-size: 2.4rem"></i>{{ $data['total_facility'] > 1 ? $data['total_facility'] . ' Facilities' : $data['total_facility'] . ' Facility' }}</p>
-                        <a href="{{ url('admin/facility') }}" class="text-decoration-none fst-italic"
-                           style="color: #777777">View Detail</a>
+        <div class="row my-4">
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <div class="card">
+                    <div class="card-body p-3">
+                        <div class="row my-1">
+                            <div class="col-8">
+                                <div class="numbers">
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Facility</p>
+                                    <h5 class="font-weight-bolder mt-2">
+                                        {{ $data['total_facility'] > 1 ? $data['total_facility'] . ' Facilities' : $data['total_facility'] . ' Facility' }}
+                                    </h5>
+                                    <p class="mb-0">
+                                            <span class="text-secondary text-sm font-weight-bolder"><a
+                                                    href="{{ url('admin/facility') }}"
+                                                    class="text-decoration-none text-secondary">View Detail</a></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-4 text-end">
+                                <i class="bi bi-building text-success text-3xl" aria-hidden="true"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-lg-3">
-                <div class="card text-start shadow border-light">
-                    <div class="card-title mx-3 mt-4 fw-medium">
-                        Total Report
-                    </div>
-                    <div class="card-body">
-                        <p class="pb-2 fs-2 fw-bolder"><i class="bi bi-exclamation-octagon pe-3"
-                                                          style="font-size: 2.4rem"></i>{{ $data['total_report'] > 1 ? $data['total_report'] . ' Reports' : $data['total_report'] . ' Report' }}</p>
-                        <a href="{{ url('admin/report') }}" class="text-decoration-none fst-italic"
-                           style="color: #777777">View Detail</a>
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <div class="card">
+                    <div class="card-body p-3">
+                        <div class="row my-1">
+                            <div class="col-8">
+                                <div class="numbers">
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Report</p>
+                                    <h5 class="font-weight-bolder mt-2">
+                                        {{ $data['total_report'] > 1 ? $data['total_report'] . ' Reports' : $data['total_report'] . ' Report' }}
+                                    </h5>
+                                    <p class="mb-0">
+                                        <span class="text-secondary text-sm font-weight-bolder"><a
+                                                href="{{ url('admin/report') }}"
+                                                class="text-decoration-none text-secondary">View Detail</a></span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-4 text-end">
+                                <i class="bi bi-exclamation-octagon text-danger text-3xl" aria-hidden="true"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 @endsection

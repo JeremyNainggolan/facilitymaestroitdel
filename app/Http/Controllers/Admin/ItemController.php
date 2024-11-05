@@ -27,14 +27,6 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'item_name' => 'required',
-            'location' => 'required',
-            'description' => 'required',
-            'condition' => 'required',
-            'status' => 'required',
-        ]);
-
         $img_name = null;
         if ($request->hasFile('item_img')) {
             $img_name = time() . '.' . $request->item_img->getClientOriginalExtension();
@@ -106,7 +98,20 @@ class ItemController extends Controller
 
     public function delete(Request $request)
     {
+        $item = Item::where('item_id', $request->input('item_id'))->first();
 
+        if ($item) {
+            $imagePath = public_path('item/') . $item->filename;
+
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+
+            $item->delete();
+
+            return redirect()->back()->with('success', 'Item deleted successfully');
+        }
+
+        return redirect()->back()->with('error', 'Item failed to delete');
     }
-
 }

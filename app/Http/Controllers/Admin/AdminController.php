@@ -55,6 +55,17 @@ class AdminController extends Controller
         $data['total_report'] = DB::table('report')->count();
         return view('admin.dashboard', compact('data'));
     }
+    public function profile()
+    {
+        $data['page_header'] = 'Profile';
+        $data['page_title'] = 'Profile';
+        $data['detail'] = DB::table('users')->where('id', Auth::user()->id)->first();
+//        echo '<pre>';
+//        print_r($data['detail']);
+//        echo '<pre>';
+//        exit();
+        return view('admin.auth.profile', compact('data'));
+    }
     public function user()
     {
         $data['page_header'] = 'User';
@@ -68,4 +79,6 @@ class AdminController extends Controller
         $data['page_title'] = 'Edit User';
         return view('admin.user.edit', compact('data'));
     }
+
+
 }

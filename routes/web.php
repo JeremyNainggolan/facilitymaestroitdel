@@ -21,9 +21,14 @@ Route::prefix('admin')->group(function () {
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('/', [AdminController::class, 'dashboard']);
         Route::get('dashboard', [AdminController::class, 'dashboard']);
-        Route::get('user', [AdminController::class, 'user']);
-        Route::get('user/edit', [AdminController::class, 'edit']);
+        Route::get('profile', [AdminController::class, 'profile']);
+        Route::post('profile', [AdminController::class, 'profile'])->name('edit.profile');
         Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
+
+        Route::prefix('user')->group(function () {
+            Route::get('/', [AdminController::class, 'user']);
+            Route::get('edit', [AdminController::class, 'edit']);
+        });
 
         Route::prefix('item')->group(function () {
             Route::get('/', [ItemController::class, 'index']);

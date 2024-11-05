@@ -69,7 +69,7 @@
                             class="position-relative bg-gradient-primary h-100 m-2 px-7 d-flex flex-column justify-content-center overflow-hidden rounded"
                             style="font-family: 'Indie Flower', cursive; background-image: url({{ asset('img/libraryaudit.jpg') }}); background-size: cover; text-shadow: 4px 0px 8px #000000;">
                             <span
-                                class="mask bg-gradient-primary opacity-6 position-absolute top-0 start-0 end-0 bottom-0"
+                                class="mask opacity-6 position-absolute top-0 start-0 end-0 bottom-0"
                                 style="backdrop-filter: blur(4px);"></span>
                             <h4 class="fs-lg-1 fs-1 mt-5 px-2 text-white blockquote position-relative">"Having no
                                 problems

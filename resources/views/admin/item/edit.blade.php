@@ -1,13 +1,13 @@
 @extends('layouts/admin-app')
 @section('title', $data['page_title'])
 @section('content')
-    <div class="col-lg-10 col-md-8 p-4">
-        <p>Pages / {{ $data['page_header'] }}</p>
-
-        <h3 class="mb-4"><?= $data['page_header'] ?></h3>
-        <div class="card p-4 shadow border-light d-flex">
-            <div
-                class="card-title fs-5 fw-medium mb-3">{{ $data['page_title'] . ' - ' . $data['item']->item_name}}</div>
+    <x-admin-nav>{{ $data['page_title'] }}</x-admin-nav>
+    <div class="container-fluid py-4">
+        <div class="card">
+            <div class="card-header pb-0 pt-3 ">
+                <h6 class="text-capitalize">{{ $data['page_header'] }}</h6>
+            </div>
+            <div class="mx-4">
             <form method="post" action="{{ url('admin/item/edit/'. $data['item']->item_id) }}" enctype="multipart/form-data">
                 @csrf
                 @if (session()->has('error'))
