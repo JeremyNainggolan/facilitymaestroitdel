@@ -42,6 +42,8 @@ Route::prefix('admin')->group(function () {
         Route::prefix('storage')->group(function () {
             Route::get('/', [StorageController::class, 'index']);
             Route::get('/add', [StorageController::class, 'add']);
+            Route::post('/add', [StorageController::class, 'store'])->name('storage.add');
+            Route::post('delete', [StorageController::class, 'delete'])->name('storage.delete');
         });
 
         Route::prefix('rent')->group(function () {

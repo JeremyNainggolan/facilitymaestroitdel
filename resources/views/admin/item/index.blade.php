@@ -73,8 +73,6 @@
                                             data-id="{{ $item['item_id'] }}">
                                         <i class="bi bi-trash me-2"></i>Delete
                                     </button>
-
-
                                 </td>
                             </tr>
                         @endforeach
@@ -101,7 +99,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete Item</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
                     <a type="button" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x text-3xl"></i></a>
                 </div>
                 <div class="modal-body">

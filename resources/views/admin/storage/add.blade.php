@@ -6,9 +6,14 @@
         <div class="card">
             <div class="card-header pb-0 pt-3 ">
                 <h6 class="text-capitalize">{{ $data['page_header'] }}</h6>
+                @if (session()->has('error'))
+                    <div class="text-danger fw-bolder">
+                        {{ session('error') }}
+                    </div>
+                @endif
             </div>
             <div class="mx-4">
-                <form role="form" method="POST" action="{{ route('item.add') }}" enctype="multipart/form-data">
+                <form role="form" method="POST" action="{{ route('storage.add') }}" enctype="multipart/form-data">
                     @csrf
                     @if($errors->any())
                         @foreach($errors->all() as $error)
@@ -19,8 +24,8 @@
                     @endif
                     <div class="row my-2">
                         <div class="col-lg-10">
-                            <label for="item_name" class="form-label">Name</label>
-                            <input name="item_name" type="text" id="item_name" class="form-control" autofocus required>
+                            <label for="name" class="form-label">Name</label>
+                            <input name="name" type="text" id="name" class="form-control" autofocus required>
                         </div>
                         <div class="col-lg-2">
                             <label for="capacity" class="form-label">Capacity</label>
@@ -36,8 +41,8 @@
                     </div>
                     <div class="row my-2">
                         <div class="col-lg-6">
-                            <label for="item_img" class="form-label">Picture</label>
-                            <input class="form-control" type="file" id="item_img" name="item_img"
+                            <label for="storage_img" class="form-label">Picture</label>
+                            <input class="form-control" type="file" id="storage_img" name="storage_img"
                                    accept=".png, .jpg, .jpeg">
                         </div>
                         <div class="col-lg-6">
@@ -64,7 +69,7 @@
         $(document).ready(function (e) {
 
 
-            $('#item_img').change(function () {
+            $('#storage_img').change(function () {
 
                 let reader = new FileReader();
 
