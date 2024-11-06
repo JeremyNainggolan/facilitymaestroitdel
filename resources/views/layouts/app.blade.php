@@ -8,12 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-          rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="{{ asset('asset/vendor/bootstrap/css/nucleo-icons.css')}}" rel="stylesheet">
     <link href="{{ asset('asset/vendor/bootstrap/css/nucleo-svg.css') }}" rel="stylesheet">
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
@@ -22,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('asset/vendor/bootstrap/icon/font/bootstrap-icons.min.css') }}">
 </head>
 
-<body style="font-family: 'Roboto', serif; background-color: #f6f9ff">
+<body style="font-family: 'Montserrat', sans-serif; background-color: #f6f9ff">
     @yield('content')
     <script src="{{ asset('asset/vendor/bootstrap/js/core/popper.min.js')}}"></script>
     <script src="{{ asset('asset/vendor/bootstrap/js/core/bootstrap.min.js')}}"></script>

@@ -5,10 +5,6 @@
         <div class="position-relative min-vh-100 justify-content-center align-items-center d-flex flex-column"
              style="background-image: url('{{ asset('img/building.jpg') }}'); background-size: cover; background-position: center; position: relative;">
 
-            <!-- Blurry Overlay -->
-            <span class="mask bg-gradient-dark opacity-6"
-                  style="backdrop-filter: blur(4px); position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></span>
-
             <div class="container position-relative">
                 <div class="row justify-content-center">
                     <div class="col-lg-5 text-center mx-auto" style="font-family: 'Krona One', sans-serif;">
