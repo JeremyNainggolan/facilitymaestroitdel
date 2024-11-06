@@ -27,6 +27,8 @@
 @include('components.side-nav-bar')
 <main class="main-content position-relative border-radius-lg ">
     @yield('content')
+    <hr class="horizontal dark">
+    @include('components.footer')
 </main>
 <script src="{{ asset('asset/vendor/bootstrap/js/core/popper.min.js')}}"></script>
 <script src="{{ asset('asset/vendor/bootstrap/js/core/bootstrap.min.js')}}"></script>
