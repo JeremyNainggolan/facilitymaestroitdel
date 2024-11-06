@@ -27,7 +27,9 @@ Route::prefix('admin')->group(function () {
 
         Route::prefix('user')->group(function () {
             Route::get('/', [AdminController::class, 'user']);
-            Route::get('edit', [AdminController::class, 'edit']);
+            Route::get('edit/{id}', [AdminController::class, 'edit']);
+            Route::post('edit/{id}', [AdminController::class, 'update']);
+            Route::get('history/{id}', [AdminController::class, 'history']);
         });
 
         Route::prefix('item')->group(function () {

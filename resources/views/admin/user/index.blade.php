@@ -6,6 +6,16 @@
         <div class="card">
             <div class="card-header pb-0 pt-3 ">
                 <h6 class="text-capitalize">{{ $data['page_header'] }}</h6>
+                @if (session()->has('error'))
+                    <div class="text-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                @if (session()->has('success'))
+                    <div class="text-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
             </div>
             <div class="table-responsive">
                 <table class="table align-items-center mb-0">
@@ -43,7 +53,7 @@
                                 <a href="{{ url('admin/user/edit/' . $user['id']) }}" type="button" class="btn text-white"
                                    style="background-color: #8EAEC4"><i
                                         class="bi bi-pencil-square me-2"></i>Edit</a>
-                                <a href="" type="button"
+                                <a href="{{ url('admin/user/history/' . $user['id']) }}" type="button"
                                    class="btn text-dark" style="background-color: #D9D9D9"><i
                                         class="bi bi-clock-history me-2"></i>History</a>
 
