@@ -75,5 +75,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [UserController::class, 'home']);
     Route::get('/home', [UserController::class, 'home']);
     Route::get('/rent', [UserController::class, 'rent']);
+    Route::get('/book', [UserController::class, 'book']);
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 });

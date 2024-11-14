@@ -36,6 +36,11 @@ class UserController extends Controller
         return view('rent');
     }
 
+    public function book()
+    {
+        return view('book');
+    }
+
     function store(Request $request)
     {
         $request->validate([
