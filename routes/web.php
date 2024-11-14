@@ -56,6 +56,8 @@ Route::prefix('admin')->group(function () {
             Route::get('/active', [RentController::class, 'active']);
         });
 
+        
+
         Route::prefix('facility')->group(function () {
             Route::get('/', [FacilityController::class, 'index']);
             Route::get('/add', [FacilityController::class, 'add']);
@@ -76,5 +78,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [UserController::class, 'home']);
     Route::get('/rent', [UserController::class, 'rent']);
     Route::get('/book', [UserController::class, 'book']);
+    Route::get('/register/facility', [FacilityController::class, 'register'])->name('register.facility');
+    Route::post('/register/facility', [FacilityController::class, 'store'])->name('register.facility');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 });
