@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav navbar-nav-hover ms-auto">
                 <li class="nav-item px-lg-5">
-                    <x-nav-links href="/home" :active="request()->is('home')">Home</x-nav-links>
+                    <x-nav-links href="/home" :active="request()->is('home') || request()->is('/')">Home</x-nav-links>
                 </li>
                 <li class="nav-item px-lg-5">
                     <x-nav-links href="/rent" :active="request()->is('rent')">Rent</x-nav-links>
