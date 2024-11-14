@@ -7,25 +7,39 @@
     <!-- Main Container -->
     <div class="container my-4">
         <!-- Search Bar, Cart Button, and Filter Button -->
-        <div class="d-block d-md-flex align-items-center mb-3 justify-content-between" style="max-width: 100%; margin: 0 auto; background-color: white; border-radius: 50px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 8px;">
-            <!-- Filter Button -->
-            <button class="btn" style="background-color: #F7F7F7; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;">
-                <i class="fas fa-sliders-h"></i>
-            </button>
+        <div class="d-flex align-items-center justify-content-between" style="max-width: 100%; margin: 0 auto; background-color: white; border-radius: 50px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 5px; height: 45px;">
             
-            <!-- Search Input -->
-            <input type="text" class="form-control mx-3 mt-2 mt-md-0" placeholder="Search" style="border: none; flex-grow: 1; background-color: #F9F9F9; border-radius: 50px; padding: 8px 15px; font-size: 0.9rem;">
+            <!-- Filter Button -->
+            <button class="btn" style="background-color: #F7F7F7; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; padding: 0;">
+                <i class="fas fa-sliders-h" style="font-size: 14px;"></i>
+            </button>
+
+            <!-- Search Input Group -->
+            <div class="d-flex align-items-center position-relative" style="flex-grow: 1; margin-left: 10px;">
+                <!-- Search Input -->
+                <input type="text" class="form-control" placeholder="Search" style="border: none; background-color: white; border-radius: 50px; padding: 10px 40px; font-size: 0.9rem; width: 100%; box-shadow: none;">
+
+                <!-- Close Icon (Inside the Input) -->
+                <button class="btn position-absolute" style="right: 55px; background-color: transparent; border: none;">
+                    <i class="fas fa-times" style="color: #A9A9A9; font-size: 12px;"></i>
+                </button>
+
+                <!-- Search Icon (Inside the Input) -->
+                <button class="btn position-absolute" style="right: 15px; background-color: transparent; border: none;">
+                    <i class="fas fa-search" style="color: #A9A9A9; font-size: 16px;"></i>
+                </button>
+            </div>
 
             <!-- Cart Button -->
-            <button class="btn mx-2" style="background-color: #F7F7F7; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;">
-                <i class="fas fa-shopping-cart"></i>
+            <button class="btn" style="background-color: #F7F7F7; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; padding: 0;">
+                <i class="fas fa-shopping-cart" style="font-size: 14px;"></i>
             </button>
         </div>
 
         <!-- Main Card Container for All Items -->
-        <div class="card p-4 position-relative" style="border-radius: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-            <!-- Process Request Button in the Top-Right Corner -->
-            <button class="btn position-absolute" style="top: 10px; right: 10px; background-color: #70F293; border-color: #70F293; border-radius: 20px; padding: 5px 12px; font-size: 0.85rem;">
+        <div class="card p-4 position-relative mt-4" style="border-radius: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding-top: 50px;">
+            <!-- Process Request Button in the Top-Right Corner as a Square -->
+            <button class="btn position-absolute" style="top: 10px; right: 10px; background-color: #70F293; border: none; padding: 10px 20px; font-size: 0.85rem; color: white; z-index: 10;">
                 Process Request
             </button>
 
