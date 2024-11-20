@@ -12,10 +12,9 @@ class Rent extends Model
     protected $table = 'rent';
 
     protected $fillable = [
-        'name',
         'item_id',
+        'facility_id',
         'user_id',
-        'rent_user',
         'status',
         'request_date',
         'approve_date',
@@ -24,13 +23,11 @@ class Rent extends Model
         'rent_date',
     ];
 
-    // Relasi one-to-many dengan Report
     public function reports()
     {
         return $this->hasMany(Report::class, 'rent_id');
     }
 
-    // Relasi many-to-one dengan Item
     public function item()
     {
         return $this->belongsTo(Item::class, 'item_id');
