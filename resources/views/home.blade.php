@@ -1,5 +1,5 @@
 @extends('layouts/app')
-@section('title', 'Facility Maestro')
+@section('title', $data['page_title'])
 @section('content')
     <x-nav-bar></x-nav-bar>
 
@@ -14,7 +14,7 @@
     </div>
 
     <div class="container my-5 p-5">
-        <div class="row justify-content-evenly">
+        <div class="row justify-content-evenly text-dark">
             <div class="card col-lg-3 col-md-10 mb-4 d-flex shadow border-light">
                 <div class="card-body fs-5">
                     <i class="bi bi-collection" style="font-size: 3rem;"></i>

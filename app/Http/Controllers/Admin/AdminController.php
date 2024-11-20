@@ -92,7 +92,7 @@ class AdminController extends Controller
             }
 
             if (!$affected) {
-                return redirect(url('/admin/profile')->with('error', 'Not Updated'));
+                return redirect(url('/admin/profile'))->with('error', 'Not Updated');
             }
 
             return redirect(url('/admin/profile'))->with('success', 'Successfully Updated');
@@ -103,6 +103,7 @@ class AdminController extends Controller
 //        exit();
         return view('admin.auth.profile', compact('data'));
     }
+
     public function user()
     {
         $data['page_header'] = 'User';

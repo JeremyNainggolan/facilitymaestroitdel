@@ -4,70 +4,60 @@
     <x-nav-bar></x-nav-bar>
 
     <div class="container mt-5">
-        <div class="card shadow-lg" style="border-radius: 16px; background-color: #f8f9fa;">
-            <div class="card-header bg-transparent text-center" style="border-bottom: none;">
-                <h3 class="fw-bold" style="margin-bottom: 0; color: #343a40;">Form Registration</h3>
+        <div class="card shadow-lg rounded-3 bg-body">
+            <div class="card-header bg-transparent text-center">
+                <h3 class="fw-bolder mb-0 text-dark text-uppercase">Form Registration</h3>
             </div>
             <div class="card-body px-5">
                 <form method="POST" action="{{ route('register.facility') }}">
                     @csrf
-                    <!-- Nama -->
                     <div class="mb-4">
-                        <label for="name" class="form-label fw-bold">Nama</label>
+                        <label for="name" class="form-label fw-bold">Name</label>
                         <div class="input-group">
-                            <span class="input-group-text bg-white" style="border-radius: 8px 0 0 8px;">
+                            <span class="input-group-text bg-white rounded-start">
                                 <i class="bi bi-person-fill"></i>
                             </span>
-                            <input type="text" name="name" id="name" class="form-control fw-light" 
-                                required placeholder="Masukkan Nama" 
-                                style="border-radius: 0 8px 8px 0; font-size: 1rem;">
+                            <input type="text" name="name" id="name" class="form-control fw-light fs-6" required>
                         </div>
                     </div>
 
-                    <!-- No Telepon -->
                     <div class="mb-4">
-                        <label for="phone" class="form-label fw-bold">No Telepon</label>
+                        <label for="phone" class="form-label fw-bold">Phone Number</label>
                         <div class="input-group">
-                            <span class="input-group-text bg-white" style="border-radius: 8px 0 0 8px;">
+                            <span class="input-group-text bg-white rounded-start">
                                 <i class="bi bi-telephone-fill"></i>
                             </span>
-                            <input type="tel" name="phone" id="phone" class="form-control fw-light" 
-                                required placeholder="Masukkan No Telepon" 
-                                style="border-radius: 0 8px 8px 0; font-size: 1rem;">
+                            <input type="tel" name="phone" id="phone" class="form-control fw-light rounded-end"
+                                   required>
                         </div>
                     </div>
 
                     <!-- Tanggal Lahir -->
                     <div class="mb-4">
-                        <label for="birthdate" class="form-label fw-bold">Tanggal Lahir</label>
-                        <input type="date" name="birthdate" id="birthdate" class="form-control fw-light" 
-                            required style="border-radius: 8px; font-size: 1rem;">
+                        <label for="birthdate" class="form-label fw-bold">Date of Request</label>
+                        <input type="date" name="date_request" id="date_request" class="form-control fw-light rounded-2" required>
                     </div>
 
                     <!-- Storage -->
                     <div class="mb-4">
-                        <label for="storage" class="form-label fw-bold">Storage</label>
-                        <select name="storage" id="storage" class="form-select fw-light" 
-                            required style="border-radius: 8px; font-size: 1rem;">
-                            <option value="" selected disabled>Pilih Storage</option>
-                            <option value="small">Small</option>
-                            <option value="medium">Medium</option>
-                            <option value="large">Large</option>
+                        <label for="facility" class="form-label fw-bold">Facility</label>
+                        <select name="facility" id="facility" class="form-select fw-light rounded-2" required>
+                            <option value="" selected disabled>Choose Facility</option>
+                            @foreach($data['facilities'] as $facility)
+                                <option value="{{ $facility['name'] }}">{{ $facility['name'] }}</option>
+                            @endforeach
                         </select>
                     </div>
 
                     <!-- Description -->
                     <div class="mb-4">
-                        <label for="description" class="form-label fw-bold">Description</label>
-                        <textarea name="description" id="description" rows="3" class="form-control fw-light" 
-                            placeholder="Masukkan Deskripsi" required 
-                            style="border-radius: 8px; font-size: 1rem;"></textarea>
+                        <label for="description" class="form-label fw-bold">Description (Reason)</label>
+                        <textarea name="description" id="description" rows="3" class="form-control fw-light rounded-2" required></textarea>
                     </div>
 
                     <!-- Button -->
                     <div class="text-center">
-                        <button type="submit" class="btn btn-gradient fw-bold" 
-                            style="border-radius: 12px; padding: 12px 24px; font-size: 1rem; background: linear-gradient(135deg, #28a745, #218838); color: #fff; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); transition: all 0.3s;">
+                        <button type="submit" class="btn btn-gradient fw-bolder bg-success text-white">
                             Process Request
                         </button>
                     </div>
@@ -76,8 +66,7 @@
         </div>
     </div>
 
-     <!-- Footer -->
-     <hr class="horizontal dark">
+    <!-- Footer -->
+    <hr class="horizontal dark">
     @include('components.footer')
 @endsection
-  

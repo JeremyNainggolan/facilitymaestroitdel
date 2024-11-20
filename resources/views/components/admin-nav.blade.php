@@ -37,7 +37,7 @@
                             </a>
                         </li>
                         <li class="">
-                            <form method="GET" action="{{ route('logout') }}" role="form">
+                            <form method="GET" action="{{ route('admin.logout') }}" role="form">
                                 @csrf
                                 <button type="submit" class="dropdown-item border-radius-md">
                                     <div class="d-flex py-1">

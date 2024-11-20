@@ -1,8 +1,8 @@
 <!-- Navbar Light -->
 <nav
-    class="navbar sticky-top navbar-expand-lg navbar-light bg-white z-index-3 py-3">
+    class="navbar sticky-top navbar-expand-lg z-index-3 py-3 fw-bold" style="background-color: #D4E5F4">
     <div class="container">
-        <a class="navbar-brand" href="" rel="tooltip" title="Facility Maestro" data-placement="bottom" target="_blank">
+        <a class="navbar-brand fs-6" href="" rel="tooltip" title="Facility Maestro" data-placement="bottom" target="_blank">
             Facility Maestro
         </a>
         <div class="collapse navbar-collapse" id="navigation">

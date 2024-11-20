@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link href="{{ asset('asset/vendor/bootstrap/css/nucleo-icons.css')}}" rel="stylesheet">
     <link href="{{ asset('asset/vendor/bootstrap/css/nucleo-svg.css') }}" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/4fb82dcb42.js" crossorigin="anonymous"></script>
     <link rel="icon" type="svg" href="{{ asset('svg/logo-no-background.svg') }}">
     <link id="pagestyle" href="{{ asset('asset/vendor/bootstrap/css/argon-dashboard.css?v=2.0.4')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('asset/vendor/bootstrap/icon/font/bootstrap-icons.min.css') }}">
