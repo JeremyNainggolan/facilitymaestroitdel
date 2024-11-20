@@ -13,6 +13,7 @@ class Rent extends Model
 
     protected $fillable = [
         'item_id',
+        'description',
         'facility_id',
         'user_id',
         'status',

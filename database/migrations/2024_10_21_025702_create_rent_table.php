@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('rent', function (Blueprint $table) {
             $table->id('rent_id')->primary();
+            $table->string('description')->nullable();
             $table->unsignedBigInteger('item_id', false)->nullable();
             $table->foreign('item_id')->references('item_id')->on('item');
             $table->unsignedBigInteger('facility_id', false)->nullable()->nullable();
