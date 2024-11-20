@@ -79,6 +79,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/rent', [UserController::class, 'rent']);
     Route::get('/book', [UserController::class, 'book']);
     Route::get('/history', [UserController::class, 'history']);
+    Route::get('/profile', [UserController::class, 'profile']);
     Route::get('/register/facility', [FacilityController::class, 'register'])->name('register.facility');
     Route::post('/register/facility', [FacilityController::class, 'store'])->name('register.facility');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');

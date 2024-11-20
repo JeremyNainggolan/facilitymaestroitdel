@@ -46,6 +46,11 @@ class UserController extends Controller
         return view('history');
     }
 
+    public function profile()
+    {
+        return view('profile');
+    }
+
     function store(Request $request)
     {
         $request->validate([
