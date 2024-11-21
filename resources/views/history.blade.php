@@ -1,5 +1,5 @@
 @extends('layouts/app')
-@section('title', 'User History')
+@section('title', $data['page_title'])
 
 @section('content')
     {{-- Navbar --}}

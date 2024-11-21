@@ -1,5 +1,5 @@
 @extends('layouts/app')
-@section('title', 'User Login')
+@section('title', $data['page_title'])
 @section('content')
     <main class="main-content mt-0">
         <section>

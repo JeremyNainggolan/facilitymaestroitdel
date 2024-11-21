@@ -1,5 +1,5 @@
 @extends('layouts/app')
-@section('title', 'User Register')
+@section('title', $data['page_title'])
 @section('content')
     <main class="main-content mt-0 ">
         <div class="position-relative min-vh-100 justify-content-center align-items-center d-flex flex-column"
