@@ -24,6 +24,12 @@
                         <input type="text" name="phone" id="phone" class="form-control fw-light rounded-2" placeholder="Enter your phone number" required>
                     </div>
 
+                    <!-- Date of Request -->
+                                        <div class="mb-4">
+                        <label for="date_request" class="form-label fw-bold">Date of Request</label>
+                        <input type="date" name="date_request" id="date_request" class="form-control fw-light rounded-2" required>
+                    </div>
+
                     <!-- Facility Select -->
                     <div class="mb-4">
                         <label for="facility" class="form-label fw-bold">Facility</label>
@@ -33,12 +39,6 @@
                                 <option value="{{ $facility['facility_id'] }}">{{ $facility['name'] }}</option>
                             @endforeach
                         </select>
-                    </div>
-
-                    <!-- Date of Request -->
-                    <div class="mb-4">
-                        <label for="date_request" class="form-label fw-bold">Date of Request</label>
-                        <input type="date" name="date_request" id="date_request" class="form-control fw-light rounded-2" required>
                     </div>
 
                     <!-- Description -->
