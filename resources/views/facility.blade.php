@@ -59,10 +59,10 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <img src="{{ $history['i_filename'] != null ? asset('item/' . $history['i_filename']) : asset('item/default.png') }}" height="120rem" alt="{{ $history['i_name'] }}">
+                                        <img src="{{ $history['fa_filename'] != null ? asset('facility/' . $history['fa_filename']) : asset('facility/default.png') }}" height="120rem" alt="{{ $history['fa_name'] }}">
                                     </td>
                                     <td>
-                                        <p class="text-xs font-weight-bold mb-0">{{ $history['i_name'] }}</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $history['fa_name'] }}</p>
                                     </td>
                                     <td>
                                         <p class="text-xs font-weight-bold mb-0">{{ $history['req_date'] == null ? '-' : $history['req_date'] }}</p>
