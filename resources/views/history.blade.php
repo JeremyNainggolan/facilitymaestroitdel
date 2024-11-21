@@ -47,9 +47,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @if(!empty($data['rents']))
+                        @if(!empty($data['history']))
                                 <?php $i = 1 ?>
-                            @foreach($data['rents'] as $rent)
+                            @foreach($data['history'] as $history)
                                 <tr class="align-middle text-xs font-weight-bold mb-0">
                                     <td>
                                         <div class="d-flex ps-3 py-1">
@@ -59,28 +59,27 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <p class="text-xs font-weight-bold mb-0">{{ $rent['rent_user'] }}</p>
+                                        <img src="{{ $history['i_filename'] != null ? asset('item/' . $history['i_filename']) : asset('item/default.png') }}" height="120rem" alt="{{ $history['i_name'] }}">
                                     </td>
                                     <td>
-                                        <p class="text-xs font-weight-bold mb-0">{{ $rent['facility_name'] }}</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $history['i_name'] }}</p>
                                     </td>
                                     <td>
-                                        <p class="text-xs font-weight-bold mb-0">{{ $rent['item_name'] }}</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $history['req_date'] == null ? '-' : $history['req_date'] }}</p>
                                     </td>
                                     <td>
-                                        <p class="text-xs font-weight-bold mb-0">{{ $rent['request_date'] }}</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $history['app_date'] == null ? '-' : $history['app_date'] }}</p>
                                     </td>
                                     <td>
-                                        <p class="text-xs font-weight-bold mb-0">{{ $rent['status'] }}</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $history['rent_date'] == null ? '-' : $history['rent_date'] }}</p>
                                     </td>
                                     <td>
-                                        <p class="text-xs font-weight-bold mb-0">{{ $rent['condition'] }}</p>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $history['rturn_date'] == null ? '-' : $history['rturn_date'] }}</p>
                                     </td>
-                                    <td class="text-center">
-                                        <a href="{{ url('admin/facility/detail/' . $rent['id']) }}" type="button"
-                                           class="btn text-white"
-                                           style="background-color: #8EAEC4"><i
-                                                class="bi bi-pencil-square me-2"></i>Edit</a>
+                                    <td>
+                                        <button class="w-100 btn text-uppercase text-xs text-light {{ $history['rent_status'] == 'pending' ? 'btn-secondary' : ($history['rent_status'] == 'accepted' ? 'btn-primary' : 'btn-danger') }}">
+                                            {{ $history['rent_status'] }}
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach

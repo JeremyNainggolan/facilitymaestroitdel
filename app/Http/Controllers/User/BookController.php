@@ -13,7 +13,7 @@ class BookController extends Controller
     public function index(Request $request)
     {
         $data['page_title'] = 'Book | Facility Maestro';
-        $data['facilities'] = Facility::all()->toArray();
+        $data['facilities'] = Facility::where('status', '=', 'available')->get()->toArray();
 
         if ($request->isMethod('post')) {
 
@@ -30,7 +30,11 @@ class BookController extends Controller
 
             ]);
 
-            if ($affected) {
+            $update = DB::table('facility')->where('facility_id', '=', $request->input('facility'))->update([
+                'status' => 'unavailable',
+            ]);
+
+            if ($affected && $update) {
                 return redirect('history/facility')->with('success', 'Request has been sent!');
             } else {
                 return redirect('book')->with('error', 'Request has not been sent!');

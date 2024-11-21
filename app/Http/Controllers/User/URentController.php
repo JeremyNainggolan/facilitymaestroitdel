@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Item;
 use Illuminate\Http\Request;
 
-class RentController extends Controller
+class URentController extends Controller
 {
     public function index()
     {
