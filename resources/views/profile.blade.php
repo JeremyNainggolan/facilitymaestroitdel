@@ -34,9 +34,10 @@
             </div>
         </div>
     </div>
-
+    
     {{-- Footer --}}
     <hr class="horizontal dark mt-5">
     @include('components.footer')
 @endsection
+
 

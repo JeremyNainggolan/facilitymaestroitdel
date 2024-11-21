@@ -69,8 +69,8 @@
             </div>
         </div>
     </div>
-
-    <!-- Footer -->
-    <hr class="horizontal dark">
+    
+ <!-- Footer -->
+ <hr class="horizontal dark">
     @include('components.footer')
 @endsection

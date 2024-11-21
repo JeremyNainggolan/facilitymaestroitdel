@@ -14,44 +14,59 @@
                 <input type="text" class="form-control border-dark ps-5" placeholder="Search">
                 <span class="input-group-text border-dark" id="basic-addon1"><i class="bi bi-search"></i></span>
             </div>
+
+            <div class="card ms-2 rounded-1">
+                <i class="bi bi-cart mx-3 my-2 rounded-0"></i>
+            </div>
         </div>
 
         <!-- Main Card Container for All Items -->
-        <div class="card p-4 position-relative mt-4 rounded-2 shadow-blur shadow-lg ">
+        <div class="card p-4 position-relative mt-4"
+             style="border-radius: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding-top: 50px;">
             <!-- Process Request Button in the Top-Right Corner as a Square -->
-            <div class="card-title text-end text-white ">
-                <button class="btn fw-bolder text-dark" style="background-color: #A1FE99" type="button" id="process"
-                        name="process">
+            <div class="card-title text-end text-white">
+                <button class="btn btn-success" type="button" id="process" name="process">
                     Process Request
                 </button>
             </div>
 
+            <!-- Items Grid with Individual Cards -->
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
-                @if(empty($data['items']))
-                    <div class="d-flex ps-3 py-1">
-                        <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-xs fst-italic text-opacity-25">No Item Available</h6>
-                        </div>
-                    </div>
-                @else
-                    @foreach ($data['items'] as $item)
-                        <div class="col">
-                            <div class="card border-1 border-dark rounded-2 shadow-sm">
-                                <img
-                                    src="{{ $item['filename'] != null ? asset('item/' . $item['filename']) : asset('item/' . 'default.png') }}"
-                                    alt="{{ $item['item_name'] }}"
-                                    class="card-img-top p-3" style="height: 150px; object-fit: contain;">
+                @php
+                    $items = [
+                        ['name' => 'Basketball', 'image' => 'basketball.jpg', 'status' => 'requested'],
+                        ['name' => 'Shuttlecock', 'image' => 'shuttlecock.jpg', 'status' => 'request'],
+                        ['name' => 'Table Tennis', 'image' => 'tabletennis.jpg', 'status' => 'request'],
+                        ['name' => 'Guitar', 'image' => 'guitar.jpg', 'status' => 'requested'],
+                        ['name' => 'Bass', 'image' => 'bass.jpg', 'status' => 'request'],
+                        ['name' => 'Volleyball', 'image' => 'vollyball.jpg', 'status' => 'request'],
+                        ['name' => 'Keyboard', 'image' => 'keyboard.jpg', 'status' => 'request'],
+                        ['name' => 'Tagading', 'image' => 'tagading.jpg', 'status' => 'requested'],
+                        ['name' => 'Camera', 'image' => 'camera.jpg', 'status' => 'request'],
+                        ['name' => 'Speaker', 'image' => 'speaker.jpg', 'status' => 'request'],
+                    ];
+                @endphp
 
-                                <div class="card-body text-center fw-bold">
-                                    <h6 class="card-title fs-5">{{ $item['item_name'] }}</h6>
-                                    <button type="button" class="btn w-100 mt-4" style="background-color: #D4E5F4">
-                                        Request
-                                    </button>
-                                </div>
+                @foreach ($items as $item)
+                    <div class="col">
+                        <!-- Individual Card for Each Item -->
+                        <div class="card border-0 shadow-sm" style="border-radius: 20px; overflow: hidden;">
+                            <!-- Item Image -->
+                            <img src="{{ asset('img/' . $item['image']) }}" alt="{{ $item['name'] }}"
+                                 class="card-img-top p-3" style="height: 150px; object-fit: contain;">
+
+                            <!-- Card Body -->
+                            <div class="card-body text-center">
+                                <h6 class="card-title" style="font-size: 1rem;">{{ $item['name'] }}</h6>
+                                <button
+                                    class="btn {{ $item['status'] == 'requested' ? 'btn-success' : 'btn-outline-primary' }} w-100"
+                                    style="border-radius: 20px; padding: 8px; font-size: 0.9rem; {{ $item['status'] == 'requested' ? 'background-color: #B1FEC7; border-color: #B1FEC7;' : 'border-color: #ADD8E6; color: #ADD8E6;' }}">
+                                    {{ $item['status'] == 'requested' ? 'Requested' : 'Request' }}
+                                </button>
                             </div>
                         </div>
-                    @endforeach
-                @endif
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
