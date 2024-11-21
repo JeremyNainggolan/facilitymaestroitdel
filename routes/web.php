@@ -60,6 +60,7 @@ Route::prefix('admin')->group(function () {
         Route::prefix('rent')->group(function () {
             Route::get('/', [RentController::class, 'index']);
             Route::get('/request', [RentController::class, 'index']);
+            Route::post('/request', [RentController::class, 'index'])->name('post.request');
             Route::get('/active', [RentController::class, 'active']);
         });
 

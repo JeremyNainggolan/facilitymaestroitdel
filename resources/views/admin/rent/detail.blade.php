@@ -30,7 +30,7 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Facility Name
                         </th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Item Name</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Approve Date
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Request Date
                         </th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -60,15 +60,16 @@
                                     <p class="text-xs font-weight-bold mb-0">{{ $rent['i_name'] != null ? $rent['i_name'] : '-' }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">{{ $rent['app_date'] }}</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $rent['req_date'] }}</p>
                                 </td>
                                 <td>
                                     <p class="text-xs font-weight-bold mb-0">{{ $rent['rent_status'] }}</p>
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-success">
-                                        Approve
-                                    </button>
+                                    <a href="{{ url('admin/rent/detail/' . $rent['rent_id']) }}" type="button"
+                                       class="btn text-white"
+                                       style="background-color: #8EAEC4"><i
+                                            class="bi bi-info-circle me-2"></i>Detail</a>
                                 </td>
                             </tr>
                         @endforeach

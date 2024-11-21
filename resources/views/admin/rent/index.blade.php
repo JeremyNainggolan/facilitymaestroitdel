@@ -51,39 +51,38 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">{{ $rent['rent_user'] }}</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $rent['user_name'] }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">{{ $rent['facility_name'] }}</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $rent['fa_name'] != null ? $rent['fa_name'] : '-' }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">{{ $rent['item_name'] }}</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $rent['i_name'] != null ? $rent['i_name'] : '-' }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">{{ $rent['request_date'] }}</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $rent['req_date'] }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">{{ $rent['status'] }}</p>
-                                </td>
-                                <td>
-                                    <p class="text-xs font-weight-bold mb-0">{{ $rent['condition'] }}</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $rent['rent_status'] }}</p>
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ url('admin/facility/detail/' . $rent['id']) }}" type="button"
-                                       class="btn text-white"
-                                       style="background-color: #8EAEC4"><i
-                                            class="bi bi-pencil-square me-2"></i>Edit</a>
+                                    <form action="{{ route('post.request') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" value="{{ $rent['rent_id'] }}" id="rent_id" name="rent_id">
+                                        <button class="btn btn-success" type="submit" id="app" name="app">
+                                            <i class="bi bi-arrow-up-circle me-2"></i>Approve
+                                        </button>
+                                        <button class="btn btn-danger" type="submit" id="re" name="re">
+                                            <i class="bi bi-slash-circle me-2"></i>Reject
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
                     @else
-                        <tr class="align-middle text-xs font-weight-bold mb-0">
-                            <td>
-                                <div class="d-flex ps-3 py-1">
-                                    <div class="d-flex flex-column justify-content-center">
-                                        <h6 class="mb-0 text-xs fst-italic text-opacity-25">No Data Available</h6>
-                                    </div>
-                                </div>
+                        <tr class="align-middle text-center font-weight-bold mb-0">
+                            <td colspan="7">
+                                <h6 class="mb-0 text-xs fst-italic text-opacity-25">No Data Available</h6>
                             </td>
                         </tr>
                     @endif
