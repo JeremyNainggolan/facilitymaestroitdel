@@ -17,7 +17,7 @@
                     <x-nav-links href="/book" :active="request()->is('book')">Book</x-nav-links>
                 </li>
                 <li class="nav-item px-lg-5">
-                    <x-nav-links href="/history" :active="request()->is('history')">History</x-nav-links>
+                    <x-nav-links href="/history" :active="request()->is('history')  || request()->is('history/facility')">History</x-nav-links>
                 </li>
                 <li class="nav-item px-lg-5">
                     <x-nav-links href="/profile" :active="request()->is('profile')">Profile</x-nav-links>

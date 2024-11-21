@@ -4,7 +4,7 @@
 @section('content')
     <x-nav-bar></x-nav-bar>
 
-    <div class="container my-4">
+    <div class="container my-3">
         <div class="card">
             <form method="POST" action="{{ route('edit') }}" enctype="multipart/form-data">
                 @csrf
