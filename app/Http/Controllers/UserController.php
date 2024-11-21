@@ -15,17 +15,18 @@ class UserController extends Controller
 {
     public function register()
     {
-        return view('register');
+        $data['page_title'] = 'Register';
+        return view('register', compact('data'));
     }
 
     public function login()
     {
+        $data['page_title'] = 'Login';
         if (auth()->check()) {
-            // Redirect user based on their role
             return redirect('/home');
         }
 
-        return view('login');  // Render login page if not authenticated
+        return view('login', compact('data'));
     }
 
     public function home()
@@ -43,52 +44,57 @@ class UserController extends Controller
         return view('rent', compact('data'));
     }
 
-    public function book()
+    public function book(Request $request)
     {
         $data['page_title'] = 'Book | Facility Maestro';
         $data['facilities'] = Facility::all()->toArray();
+
+        if ($request->isMethod('post')) {
+
+            $request->validate([
+                'facility' => 'required',
+                'date_request' => 'required|date',
+                'description' => 'required',
+            ]);
+
+            $affected = DB::table('rent')->insert([
+                'facility_id' => $request->input('facility'),
+                'user_id' => Auth::user()->id,
+                'request_date' => $request->input('date_request'),
+
+            ]);
+
+            if ($affected) {
+                return redirect('history/facility')->with('success', 'Request has been sent!');
+            } else {
+                return redirect('book')->with('error', 'Request has not been sent!');
+            }
+        }
+
         return view('book', compact('data'));
     }
 
     public function history()
     {
-        return view('history');
+        $data['page_title'] = 'History | Facility Maestro';
+        return view('history', compact('data'));
     }
 
     public function profile(Request $request)
     {
-        $data['page_header'] = 'Profile';
-        $data['page_title'] = 'Profile';
+        $data['page_title'] = 'Profile | Facility Maestro';
         $data['detail'] = DB::table('users')->where('id', Auth::user()->id)->first();
         if ($request->isMethod('post')) {
-            $user = DB::table('users')->where('id', Auth::user()->id)->first();
 
-            $img_name = null;
-            if ($request->hasFile('img')) {
-                $img_name = time() . '.' . $request->img->getClientOriginalExtension();
-                $request->img->move(public_path('user'), $img_name);
-
-                $affected = DB::table('users')
-                    ->where('id', Auth::user()->id)
-                    ->update([
-                        'name' => $request->input('txt_name'),
-                        'email' => $request->input('txt_email'),
-                        'username' => $request->input('txt_username'),
-                        'phonenumber' => $request->input('txt_phonenumber'),
-                        'password' => Hash::make($request->input('txt_password')),
-                        'filename' => $img_name,
-                    ]);
-            } else {
-                $affected = DB::table('users')
-                    ->where('id', Auth::user()->id)
-                    ->update([
-                        'name' => $request->input('txt_name'),
-                        'email' => $request->input('txt_email'),
-                        'username' => $request->input('txt_username'),
-                        'phonenumber' => $request->input('txt_phonenumber'),
-                        'password' => Hash::make($request->input('txt_password')),
-                    ]);
-            }
+            $affected = DB::table('users')
+                ->where('id', Auth::user()->id)
+                ->update([
+                    'name' => $request->input('txt_name'),
+                    'email' => $request->input('txt_email'),
+                    'username' => $request->input('txt_username'),
+                    'phonenumber' => $request->input('txt_phonenumber'),
+                    'password' => Hash::make($request->input('txt_password')),
+                ]);
 
             if (!$affected) {
                 return redirect(url('profile'))->with('error', 'Not Updated');
@@ -96,10 +102,7 @@ class UserController extends Controller
 
             return redirect(url('profile'))->with('success', 'Successfully Updated');
         }
-//        echo '<pre>';
-//        print_r($data['detail']);
-//        echo '<pre>';
-//        exit();
+
         return view('profile', compact('data'));
     }
 
