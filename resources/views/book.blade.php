@@ -9,8 +9,21 @@
                 <h3 class="fw-bolder mb-0 text-dark text-uppercase">Form Registration</h3>
             </div>
             <div class="card-body px-5">
-                <form method="POST" action="">
+                <form method="POST" action="{{ route('facility.register') }}">
                     @csrf
+                    <!-- Name Input -->
+                    <div class="mb-4">
+                        <label for="name" class="form-label fw-bold">Name</label>
+                        <input type="text" name="name" id="name" class="form-control fw-light rounded-2" placeholder="Enter your name" required>
+                    </div>
+
+                    <!-- Phone Input -->
+                    <div class="mb-4">
+                        <label for="phone" class="form-label fw-bold">Phone</label>
+                        <input type="text" name="phone" id="phone" class="form-control fw-light rounded-2" placeholder="Enter your phone number" required>
+                    </div>
+
+                    <!-- Facility Select -->
                     <div class="mb-4">
                         <label for="facility" class="form-label fw-bold">Facility</label>
                         <select name="facility" id="facility" class="form-select fw-light rounded-2" required>
@@ -21,16 +34,19 @@
                         </select>
                     </div>
 
+                    <!-- Date of Request -->
                     <div class="mb-4">
                         <label for="date_request" class="form-label fw-bold">Date of Request</label>
                         <input type="date" name="date_request" id="date_request" class="form-control fw-light rounded-2" required>
                     </div>
 
+                    <!-- Description -->
                     <div class="mb-4">
                         <label for="description" class="form-label fw-bold">Description (Reason)</label>
-                        <textarea name="description" id="description" rows="3" class="form-control fw-light rounded-2" required></textarea>
+                        <textarea name="description" id="description" rows="3" class="form-control fw-light rounded-2" placeholder="Explain your reason" required></textarea>
                     </div>
 
+                    <!-- Submit Button -->
                     <div class="text-center">
                         <button type="submit" class="btn btn-gradient fw-bolder bg-success text-white">
                             Process Request
