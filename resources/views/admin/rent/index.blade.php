@@ -11,12 +11,12 @@
                 <x-nav-tabs></x-nav-tabs>
             </div>
             @if (session()->has('error'))
-                <div class="text-danger">
+                <div class="m-4 text-white p-2 rounded-2 alert-danger text-center">
                     {{ session('error') }}
                 </div>
             @endif
             @if (session()->has('success'))
-                <div class="text-success">
+                <div class="m-4 text-white p-2 rounded-2 alert-info text-center">
                     {{ session('success') }}
                 </div>
             @endif
@@ -69,10 +69,12 @@
                                     <form action="{{ route('post.request') }}" method="POST">
                                         @csrf
                                         <input type="hidden" value="{{ $rent['rent_id'] }}" id="rent_id" name="rent_id">
-                                        <button class="btn btn-success" type="submit" id="app" name="app">
+                                        <input type="hidden" value="{{ $rent['facility_id'] }}" id="facility_id" name="facility_id">
+                                        <input type="hidden" value="{{ $rent['item_id'] }}" id="item_id" name="item_id">
+                                        <button class="btn btn-success" type="submit" id="status" name="status" value="accepted">
                                             <i class="bi bi-arrow-up-circle me-2"></i>Approve
                                         </button>
-                                        <button class="btn btn-danger" type="submit" id="re" name="re">
+                                        <button class="btn btn-danger" type="submit" id="status" name="status" value="rejected">
                                             <i class="bi bi-slash-circle me-2"></i>Reject
                                         </button>
                                     </form>

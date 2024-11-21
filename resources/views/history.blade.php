@@ -59,7 +59,9 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <img src="{{ $history['i_filename'] != null ? asset('item/' . $history['i_filename']) : asset('item/default.png') }}" height="120rem" alt="{{ $history['i_name'] }}">
+                                        <img
+                                            src="{{ $history['i_filename'] != null ? asset('item/' . $history['i_filename']) : asset('item/default.png') }}"
+                                            height="120rem" alt="{{ $history['i_name'] }}">
                                     </td>
                                     <td>
                                         <p class="text-xs font-weight-bold mb-0">{{ $history['i_name'] }}</p>
@@ -77,7 +79,8 @@
                                         <p class="text-xs font-weight-bold mb-0">{{ $history['rturn_date'] == null ? '-' : $history['rturn_date'] }}</p>
                                     </td>
                                     <td>
-                                        <button class="w-100 btn text-uppercase text-xs text-light {{ $history['rent_status'] == 'pending' ? 'btn-secondary' : ($history['rent_status'] == 'accepted' ? 'btn-primary' : 'btn-danger') }}">
+                                        <button
+                                            class="w-100 btn text-uppercase text-xs text-light {{ ($history['rent_status'] == 'pending' ? 'btn-secondary' : ($history['rent_status'] == 'accepted' ? 'btn-primary' : ($history['rent_status'] == 'returned' ? 'btn-success' : 'btn-danger'))) }}">
                                             {{ $history['rent_status'] }}
                                         </button>
                                     </td>

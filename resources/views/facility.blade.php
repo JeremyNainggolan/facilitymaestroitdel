@@ -38,9 +38,15 @@
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Approve
                                 Date
                             </th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Reject
+                                Date
+                            </th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rent Date
                             </th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Return
+                                Date
+                            </th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Report
                                 Date
                             </th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
@@ -59,7 +65,9 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <img src="{{ $history['fa_filename'] != null ? asset('facility/' . $history['fa_filename']) : asset('facility/default.png') }}" height="120rem" alt="{{ $history['fa_name'] }}">
+                                        <img
+                                            src="{{ $history['fa_filename'] != null ? asset('facility/' . $history['fa_filename']) : asset('facility/default.png') }}"
+                                            height="120rem" alt="{{ $history['fa_name'] }}">
                                     </td>
                                     <td>
                                         <p class="text-xs font-weight-bold mb-0">{{ $history['fa_name'] }}</p>
@@ -71,13 +79,20 @@
                                         <p class="text-xs font-weight-bold mb-0">{{ $history['app_date'] == null ? '-' : $history['app_date'] }}</p>
                                     </td>
                                     <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $history['rej_date'] == null ? '-' : $history['rej_date'] }}</p>
+                                    </td>
+                                    <td>
                                         <p class="text-xs font-weight-bold mb-0">{{ $history['rent_date'] == null ? '-' : $history['rent_date'] }}</p>
                                     </td>
                                     <td>
                                         <p class="text-xs font-weight-bold mb-0">{{ $history['rturn_date'] == null ? '-' : $history['rturn_date'] }}</p>
                                     </td>
                                     <td>
-                                        <button class="w-100 btn text-uppercase text-xs text-light {{ $history['rent_status'] == 'pending' ? 'btn-secondary' : ($history['rent_status'] == 'accepted' ? 'btn-primary' : 'btn-danger') }}">
+                                        <p class="text-xs font-weight-bold mb-0">{{ $history['report_date'] == null ? '-' : $history['report_date'] }}</p>
+                                    </td>
+                                    <td>
+                                        <button
+                                            class="w-100 btn text-uppercase text-xs text-light {{ ($history['rent_status'] == 'pending' ? 'btn-secondary' : ($history['rent_status'] == 'accepted' ? 'btn-primary' : ($history['rent_status'] == 'returned' ? 'btn-success' : 'btn-danger'))) }}">
                                             {{ $history['rent_status'] }}
                                         </button>
                                     </td>

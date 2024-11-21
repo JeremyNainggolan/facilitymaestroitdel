@@ -21,6 +21,7 @@ class Rent extends Model
         'approve_date',
         'reject_date',
         'return_date',
+        'report_date',
         'rent_date',
     ];
 

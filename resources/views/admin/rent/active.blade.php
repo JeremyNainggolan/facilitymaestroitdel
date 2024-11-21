@@ -11,12 +11,12 @@
                 <x-nav-tabs></x-nav-tabs>
             </div>
             @if (session()->has('error'))
-                <div class="text-danger">
+                <div class="m-4 text-white p-2 rounded-2 alert-danger text-center">
                     {{ session('error') }}
                 </div>
             @endif
             @if (session()->has('success'))
-                <div class="text-success">
+                <div class="m-4 text-white p-2 rounded-2 alert-info text-center">
                     {{ session('success') }}
                 </div>
             @endif
@@ -66,9 +66,18 @@
                                     <p class="text-xs font-weight-bold mb-0">{{ $rent['rent_status'] }}</p>
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-success">
-                                        Approve
-                                    </button>
+                                    <form action="{{ route('post.return') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" value="{{ $rent['rent_id'] }}" id="rent_id" name="rent_id">
+                                        <input type="hidden" value="{{ $rent['facility_id'] }}" id="facility_id" name="facility_id">
+                                        <input type="hidden" value="{{ $rent['item_id'] }}" id="item_id" name="item_id">
+                                        <button class="btn btn-success" type="submit" id="status" name="status" value="returned">
+                                            <i class="bi bi-arrow-down-circle me-2"></i>Return
+                                        </button>
+                                        <button class="btn btn-danger" type="submit" id="status" name="status" value="reported">
+                                            <i class="bi bi-exclamation-circle me-2"></i>Report
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
