@@ -1,12 +1,16 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\FacilityController;
+use App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\Admin\RentController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\StorageController;
-use App\Http\Controllers\Admin\ItemController;
-use App\Http\Controllers\Admin\FacilityController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\User\BookController;
+use App\Http\Controllers\User\HistoryController;
+use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/register', [UserController::class, 'register']);
@@ -73,13 +77,19 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [UserController::class, 'home']);
-    Route::get('/home', [UserController::class, 'home']);
-    Route::get('/rent', [UserController::class, 'rent']);
-    Route::get('/book', [UserController::class, 'book']);
-    Route::post('/book', [UserController::class, 'book']);
+    Route::get('/', [HomeController::class, 'index']);
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
-    Route::get('/history', [UserController::class, 'history']);
-    Route::get('/profile', [UserController::class, 'profile']);
-    Route::post('/profile', [UserController::class, 'profile'])->name('edit');
+
+    Route::get('/home', [HomeController::class, 'index']);
+
+    Route::get('/rent', [RentController::class, 'index']);
+
+    Route::get('/book', [BookController::class, 'index']);
+    Route::post('/book', [BookController::class, 'index']);
+
+    Route::get('/history', [HistoryController::class, 'index']);
+    Route::get('/history/facility', [HistoryController::class, 'facility']);
+
+    Route::get('/profile', [ProfileController::class, 'index']);
+    Route::post('/profile', [ProfileController::class, 'index'])->name('edit');
 });

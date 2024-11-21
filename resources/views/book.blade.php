@@ -1,9 +1,10 @@
 @extends('layouts/app')
 @section('title', $data['page_title'])
+
 @section('content')
     <x-nav-bar></x-nav-bar>
 
-    <div class="container mt-5">
+    <div class="container my-3">
         <div class="card shadow-lg rounded-3 bg-body">
             <div class="card-header bg-transparent text-center">
                 <h3 class="fw-bolder mb-0 text-dark text-uppercase">Form Registration</h3>
