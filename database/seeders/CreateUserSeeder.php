@@ -21,7 +21,7 @@ class CreateUserSeeder extends Seeder
                 'username' => 'rahelsimanjuntak2909',
                 'phonenumber' => '082166796689',
                 'type' => 0,
-                'password' => Hash::make('simanjuntak123'),
+                'password' => Hash::make('user123'),
             ),
             array(
                 'name' => 'Krisnia Siahaan',
@@ -29,7 +29,7 @@ class CreateUserSeeder extends Seeder
                 'username' => 'krisniasiahaan',
                 'phonenumber' => '081362078866',
                 'type' => 0,
-                'password' => Hash::make('krisnia123'),
+                'password' => Hash::make('user123'),
             ),
             array(
                 'name' => 'Gracia Purba',
@@ -37,7 +37,7 @@ class CreateUserSeeder extends Seeder
                 'username' => 'graciapurba27',
                 'phonenumber' => '082298630250',
                 'type' => 0,
-                'password' => Hash::make('graciapurba123'),
+                'password' => Hash::make('user123'),
             ),
             array(
                 'name' => 'Jeremy Nainggolan',

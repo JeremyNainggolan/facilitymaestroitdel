@@ -69,12 +69,22 @@
                                     <form action="{{ route('post.return') }}" method="POST">
                                         @csrf
                                         <input type="hidden" value="{{ $rent['rent_id'] }}" id="rent_id" name="rent_id">
-                                        <input type="hidden" value="{{ $rent['facility_id'] }}" id="facility_id" name="facility_id">
+                                        <input type="hidden" value="{{ $rent['facility_id'] }}" id="facility_id"
+                                               name="facility_id">
                                         <input type="hidden" value="{{ $rent['item_id'] }}" id="item_id" name="item_id">
-                                        <button class="btn btn-success" type="submit" id="status" name="status" value="returned">
-                                            <i class="bi bi-arrow-down-circle me-2"></i>Return
-                                        </button>
-                                        <button class="btn btn-danger" type="submit" id="status" name="status" value="reported">
+                                        @if($rent['item_id'])
+                                            <button class="btn btn-success" type="submit" id="status" name="status"
+                                                    value="returned">
+                                                <i class="bi bi-arrow-down-circle me-2"></i>Return
+                                            </button>
+                                        @else
+                                            <button class="btn btn-success" type="submit" id="status" name="status"
+                                                    value="done">
+                                                <i class="bi bi-check-circle me-2"></i>Done
+                                            </button>
+                                        @endif
+                                        <button class="btn btn-danger" type="submit" id="status" name="status"
+                                                value="reported">
                                             <i class="bi bi-exclamation-circle me-2"></i>Report
                                         </button>
                                     </form>
@@ -92,4 +102,5 @@
                 </table>
             </div>
         </div>
+    </div>
 @endsection

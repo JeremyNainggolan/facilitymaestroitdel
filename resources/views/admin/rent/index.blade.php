@@ -29,6 +29,7 @@
                         </th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Facility Name
                         </th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Reason</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Item Name</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Request Date
                         </th>
@@ -57,6 +58,9 @@
                                     <p class="text-xs font-weight-bold mb-0">{{ $rent['fa_name'] != null ? $rent['fa_name'] : '-' }}</p>
                                 </td>
                                 <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $rent['reason'] != null ? $rent['reason'] : '-' }}</p>
+                                </td>
+                                <td>
                                     <p class="text-xs font-weight-bold mb-0">{{ $rent['i_name'] != null ? $rent['i_name'] : '-' }}</p>
                                 </td>
                                 <td>
@@ -69,12 +73,15 @@
                                     <form action="{{ route('post.request') }}" method="POST">
                                         @csrf
                                         <input type="hidden" value="{{ $rent['rent_id'] }}" id="rent_id" name="rent_id">
-                                        <input type="hidden" value="{{ $rent['facility_id'] }}" id="facility_id" name="facility_id">
+                                        <input type="hidden" value="{{ $rent['facility_id'] }}" id="facility_id"
+                                               name="facility_id">
                                         <input type="hidden" value="{{ $rent['item_id'] }}" id="item_id" name="item_id">
-                                        <button class="btn btn-success" type="submit" id="status" name="status" value="accepted">
+                                        <button class="btn btn-success" type="submit" id="status" name="status"
+                                                value="accepted">
                                             <i class="bi bi-arrow-up-circle me-2"></i>Approve
                                         </button>
-                                        <button class="btn btn-danger" type="submit" id="status" name="status" value="rejected">
+                                        <button class="btn btn-danger" type="submit" id="status" name="status"
+                                                value="rejected">
                                             <i class="bi bi-slash-circle me-2"></i>Reject
                                         </button>
                                     </form>
@@ -83,7 +90,7 @@
                         @endforeach
                     @else
                         <tr class="align-middle text-center font-weight-bold mb-0">
-                            <td colspan="7">
+                            <td colspan="8">
                                 <h6 class="mb-0 text-xs fst-italic text-opacity-25">No Data Available</h6>
                             </td>
                         </tr>

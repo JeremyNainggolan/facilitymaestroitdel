@@ -16,6 +16,7 @@ return new class extends Migration {
                 r.`rent_id` AS rent_id,
                 r.`item_id` AS item_id,
                 r.`facility_id` AS facility_id,
+                r.`description` AS reason,
                 r.`user_id` AS user_id,
                 r.`status` AS rent_status,
                 r.`request_date` AS req_date,

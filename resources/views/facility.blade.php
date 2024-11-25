@@ -92,7 +92,7 @@
                                     </td>
                                     <td>
                                         <button
-                                            class="w-100 btn text-uppercase text-xs text-light {{ ($history['rent_status'] == 'pending' ? 'btn-secondary' : ($history['rent_status'] == 'accepted' ? 'btn-primary' : ($history['rent_status'] == 'returned' ? 'btn-success' : 'btn-danger'))) }}">
+                                            class="w-100 btn text-uppercase text-xs text-light {{ ($history['rent_status'] == 'pending' ? 'btn-secondary' : ($history['rent_status'] == 'accepted' ? 'btn-primary' : ($history['rent_status'] == 'returned' ? 'btn-success' : ($history['rent_status'] == 'done' ? 'btn-success' : 'btn-danger')))) }}">
                                             {{ $history['rent_status'] }}
                                         </button>
                                     </td>
@@ -100,7 +100,7 @@
                             @endforeach
                         @else
                             <tr class="align-middle text-center font-weight-bold mb-0">
-                                <td colspan="8">
+                                <td colspan="10">
                                     <h6 class="mb-0 text-xs fst-italic text-opacity-25">No Data Available</h6>
                                 </td>
                             </tr>

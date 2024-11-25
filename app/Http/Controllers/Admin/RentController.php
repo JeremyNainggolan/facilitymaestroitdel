@@ -74,7 +74,7 @@ class RentController extends Controller
                 'rent_id' => 'required',
             ]);
 
-            if ($request->input('status') == 'returned') {
+            if ($request->input('status') == 'returned' || $request->input('status') == 'done') {
 
                 $affected = DB::table('rent')->where('rent_id', '=', $request->input('rent_id'))->update([
                     'status' => $request->input('status'),
@@ -99,19 +99,23 @@ class RentController extends Controller
 
             } else if ($request->input('status') == 'reported') {
 
+
                 $affected = DB::table('rent')->where('rent_id', '=', $request->input('rent_id'))->update([
                     'status' => $request->input('status'),
                     'report_date' => now(),
                 ]);
 
+
                 if ($request->input('facility_id')) {
                     $update = DB::table('facility')->where('facility_id', '=', $request->input('facility_id'))->update([
-                        'status' => 'unavailable',
+                        'condition' => 'bad',
                     ]);
+
                 } else if ($request->input('item_id')) {
                     $update = DB::table('item')->where('item_id', '=', $request->input('item_id'))->update([
-                        'item_status' => 'unavailable',
+                        'condition' => 'broken',
                     ]);
+
                 }
 
                 if ($affected && $update) {
@@ -119,6 +123,7 @@ class RentController extends Controller
                 } else {
                     return redirect('admin/rent/active')->with('error', 'Report Failed');
                 }
+
             }
         }
         return view('admin.rent.active', compact('data'));

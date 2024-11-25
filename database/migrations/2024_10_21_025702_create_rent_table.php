@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->foreign('facility_id')->references('facility_id')->on('facility');
             $table->unsignedBigInteger('user_id', false);
             $table->foreign('user_id')->references('id')->on('users');
-            $table->enum('status', ['pending', 'accepted', 'rejected', 'returned', 'reported'])->default('pending');
+            $table->enum('status', ['pending', 'accepted', 'rejected', 'returned', 'reported', 'done'])->default('pending');
             $table->date('request_date');
             $table->date('approve_date')->nullable();
             $table->date('reject_date')->nullable();

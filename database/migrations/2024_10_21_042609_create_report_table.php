@@ -13,7 +13,6 @@ return new class extends Migration {
         Schema::create('report', function (Blueprint $table) {
             $table->id('report_id');
             $table->string('reason');
-            $table->string('location');
             $table->string('filename');
             $table->enum('condition', ['good', 'bad'])->default('good');
             $table->date('report_date');

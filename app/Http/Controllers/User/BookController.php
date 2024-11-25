@@ -25,8 +25,10 @@ class BookController extends Controller
 
             $affected = DB::table('rent')->insert([
                 'facility_id' => $request->input('facility'),
+                'description' => $request->input('description'),
                 'user_id' => Auth::user()->id,
-                'request_date' => $request->input('date_request'),
+                'request_date' => now(),
+                'rent_date' => $request->input('date_request'),
 
             ]);
 
