@@ -14,9 +14,9 @@ class UserAPI extends Controller
         $user = User::all();
 
         if ($user->count() == 0) {
-            return new UserResource(201, 'Facility Data Not Found', null);
+            return new UserResource(201, 'User Data Not Found', null);
         }
 
-        return new UserResource(210, 'Facility Data', $user);
+        return new UserResource(210, 'User Data', $user);
     }
 }
