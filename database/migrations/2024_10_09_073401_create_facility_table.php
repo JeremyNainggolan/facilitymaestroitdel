@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('facility', function (Blueprint $table) {
             $table->id('facility_id')->primary();
-            $table->string('name');
-            $table->string('detail');
-            $table->string('filename');
-            $table->enum('status', ['available', 'unavailable'])->default('available');
-            $table->enum('condition', ['good', 'bad'])->default('good');
+            $table->string('name')->nullable();
+            $table->string('detail')->nullable();
+            $table->string('filename')->nullable();
+            $table->enum('status', ['available', 'unavailable'])->default('available')->nullable();
+            $table->enum('condition', ['good', 'bad'])->default('good')->nullable();
             $table->timestamps();
         });
     }
