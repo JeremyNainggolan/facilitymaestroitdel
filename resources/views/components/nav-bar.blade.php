@@ -11,7 +11,7 @@
                     <x-nav-links href="/home" :active="request()->is('home') || request()->is('/')">Home</x-nav-links>
                 </li>
                 <li class="nav-item px-lg-5">
-                    <x-nav-links href="/rent" :active="request()->is('rent')">Rent</x-nav-links>
+                    <x-nav-links href="/rent" :active="request()->is('rent') || request()->is('rent/cart')">Rent</x-nav-links>
                 </li>
                 <li class="nav-item px-lg-5">
                     <x-nav-links href="/book" :active="request()->is('book')">Book</x-nav-links>

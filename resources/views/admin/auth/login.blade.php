@@ -5,19 +5,17 @@
         <div class="page-header align-items-center min-vh-100 bg-white d-flex justify-content-center">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-8 col-12">
+                    <div class="col-lg-4 col-sm-12 col-md-8 col-12">
                         <div class="card border-0 shadow rounded-4">
                             <div class="card-body">
                                 <img class="card-img p-4" src="{{ asset('svg/logo-no-background.svg') }}" alt="">
-                                <h2 class="fw-bolder text-center mx-2 py-3">- Administration Login -</h2>
+                                <h2 class="fw-bolder text-center mx-1 py-3">- Administration Login -</h2>
                                 <form role="form" method="POST" action="{{ route('admin.login') }}">
                                     @csrf
-                                    @if($errors->any())
-                                        @foreach($errors->all() as $error)
-                                            <div class="text-danger">
-                                                {{ $error }}
-                                            </div>
-                                        @endforeach
+                                    @if(session()->has('error'))
+                                        <div class="text-danger my-3 px-2">
+                                            {{ session('error') }}
+                                        </div>
                                     @endif
                                     <div class="input-group input-group-outline my-3 px-2">
                                         <input required value="{{ old('email') }}" autofocus id="email" name="email"

@@ -15,11 +15,21 @@
 
         <div class="card p-4 position-relative mt-4 rounded-2 shadow-blur shadow-lg ">
             <div class="card-title text-end text-white ">
-                <button class="btn fw-bolder text-dark" style="background-color: #A1FE99" type="button" id="process"
-                        name="process">
+                <a class="btn fw-bolder text-white btn-success" href="{{ url('rent/cart') }}">
                     Process Request
-                </button>
+                </a>
             </div>
+
+            @if (session()->has('error'))
+                <div class="mx-4 mb-4 text-white p-2 rounded-2 alert-danger text-center">
+                    {{ session('error') }}
+                </div>
+            @endif
+            @if (session()->has('success'))
+                <div class="mx-4 mb-4 text-white p-2 rounded-2 alert-info text-center">
+                    {{ session('success') }}
+                </div>
+            @endif
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
                 @if(empty($data['items']))
@@ -39,9 +49,23 @@
 
                                 <div class="card-body text-center fw-bold">
                                     <h6 class="card-title fs-5">{{ $item['item_name'] }}</h6>
-                                    <button type="button" class="btn w-100 mt-4" style="background-color: #D4E5F4">
-                                        Request
-                                    </button>
+                                    @if(\Surfsidemedia\Shoppingcart\Facades\Cart::instance('cart')->content()->where('id', $item['item_id'])->count() > 0)
+                                        <a class="btn w-100 mt-4 btn-secondary" href="{{ url('rent/cart') }}">
+                                            Go to Cart
+                                        </a>
+                                    @else
+                                        <form method="post" action="{{ route('cart.add') }}">
+                                            @csrf
+                                            <input type="hidden" name="id" id="id" value="{{ $item['item_id'] }}">
+                                            <input type="hidden" name="item_name" id="item_name"
+                                                   value="{{ $item['item_name'] }}">
+                                            <input type="hidden" name="item_img" id="item_img"
+                                                   value="{{ $item['filename'] }}">
+                                            <button type="submit" class="btn w-100 mt-4 btn-primary">
+                                                Request
+                                            </button>
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>

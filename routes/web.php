@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\RentController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\StorageController;
 use App\Http\Controllers\User\BookController;
+use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\HistoryController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\ProfileController;
@@ -81,13 +82,22 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
     Route::get('/home', [HomeController::class, 'index']);
 
-    Route::get('/rent', [URentController::class, 'index']);
+    Route::prefix('rent')->group(function () {
+        Route::get('/', [URentController::class, 'index']);
+        Route::post('/', [URentController::class, 'add'])->name('rent.add');
+        Route::get('/cart', [CartController::class, 'index']);
+        Route::post('/cart', [CartController::class, 'add'])->name('cart.add');
+        Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
+        Route::get('/destroy', [CartController::class, 'destroy'])->name('cart.destroy');
+
+    });
+
 
     Route::get('/book', [BookController::class, 'index']);
     Route::post('/book', [BookController::class, 'index']);
