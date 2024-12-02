@@ -1,24 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Hateoas;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Hateoas\ItemHateoasResource;
 use App\Http\Resources\ItemResource;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ItemAPI extends Controller
+class ItemHateoas extends Controller
 {
     public function index()
     {
-        $item = Item::all();
+        $items = Item::all();
 
-        if ($item->count() == 0) {
-            return new ItemResource(201, 'Item Data Not Found', null);
+        if ($items->count() == 0) {
+            return new ItemHateoasResource(201, 'Item Data Not Found', null, $this->getHATEOASLinks());
         }
 
-        return new ItemResource(210, 'Item Data', $item);
+        return new ItemHateoasResource(210, 'Item Data', $items, $this->getHATEOASLinks());
     }
 
     public function store(Request $request)
@@ -33,7 +34,7 @@ class ItemAPI extends Controller
         ]);
 
         if ($validator->fails()) {
-            return new ItemResource(201, $validator->errors(), []);
+            return new ItemHateoasResource(201, $validator->errors(), [], $this->getHATEOASLinks());
         }
 
         $img_name = null;
@@ -52,9 +53,9 @@ class ItemAPI extends Controller
         ]);
 
         if ($item) {
-            return new ItemResource(210, 'Item Data Added Successfully', $item);
+            return new ItemHateoasResource(210, 'Item Data Added Successfully', $item, $this->getHATEOASLinks());
         } else {
-            return new ItemResource(201, 'Unsuccessfully Adding Data', []);
+            return new ItemHateoasResource(201, 'Unsuccessfully Adding Data', [], $this->getHATEOASLinks());
         }
     }
 
@@ -63,10 +64,10 @@ class ItemAPI extends Controller
         $item = Item::find($id);
 
         if ($item) {
-            return new ItemResource(210, 'Item Detail', $item);
+            return new ItemHateoasResource(210, 'Item Detail', $item, $this->getHATEOASLinks($id));
         }
 
-        return new ItemResource(201, 'Item Data Not Found', []);
+        return new ItemHateoasResource(201, 'Item Data Not Found', [], $this->getHATEOASLinks());
     }
 
     public function update(Request $request, $id)
@@ -101,17 +102,16 @@ class ItemAPI extends Controller
                     'item_status' => $request->input('item_status'),
                     'condition' => $request->input('condition'),
                 ]);
-
             }
 
             if ($item) {
-                return new ItemResource(210, 'Item Data Updated Successfully', $item);
+                return new ItemHateoasResource(210, 'Item Data Updated Successfully', $item, $this->getHATEOASLinks($id));
             } else {
-                return new ItemResource(201, 'Unsuccessfully Updating Data', []);
+                return new ItemHateoasResource(201, 'Unsuccessfully Updating Data', [], $this->getHATEOASLinks());
             }
         }
 
-        return new ItemResource(201, 'FacilityHateoas Data Not Found', []);
+        return new ItemHateoasResource(201, 'Item Data Not Found', [], $this->getHATEOASLinks());
     }
 
     public function destroy($id)
@@ -125,9 +125,30 @@ class ItemAPI extends Controller
             }
             $item->delete();
 
-            return new ItemResource(210, 'Item Data Deleted Successfully', []);
+            return new ItemHateoasResource(210, 'Item Data Deleted Successfully', [], $this->getHATEOASLinks());
         } else {
-            return new ItemResource(201, 'Item Data Not Found', []);
+            return new ItemHateoasResource(201, 'Item Data Not Found', [], $this->getHATEOASLinks());
         }
+    }
+
+    // Helper function to generate HATEOAS links
+    private function getHATEOASLinks($id = null)
+    {
+        $links = [
+            'self' => url('api/items'),
+            'create' => url('api/items/create'),
+            'index' => url('api/items'),
+            'update' => url('api/items/{id}/update'),
+            'destroy' => url('api/items/{id}/destroy'),
+        ];
+
+        if ($id) {
+            // Replace {id} with actual item ID in links
+            $links['self'] = url("api/items/{$id}");
+            $links['update'] = url("api/items/{$id}/update");
+            $links['destroy'] = url("api/items/{$id}/destroy");
+        }
+
+        return $links;
     }
 }

@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Hateoas;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\FacilityResource;
-use App\Models\Facility;
+use App\Http\Resources\Hateoas\FacilityHateoasResource;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Models\Facility;
 
-class FacilityAPI extends Controller
+class FacilityHateoas extends Controller
 {
     public function index()
     {
         $facility = Facility::all();
 
         if ($facility->count() == 0) {
-            return new FacilityResource(201, 'FacilityHateoas Data Not Found', []);
+            return new FacilityHateoasResource(201, 'FacilityHateoas Data Not Found', [], $this->getHATEOASLinks());
         }
 
-        return new FacilityResource(210, 'FacilityHateoas Data', $facility);
+        return new FacilityHateoasResource(210, 'FacilityHateoas Data', $facility, $this->getHATEOASLinks());
     }
 
     public function store(Request $request)
@@ -30,7 +30,7 @@ class FacilityAPI extends Controller
         ]);
 
         if ($validator->fails()) {
-            return new FacilityResource(201, $validator->errors(), []);
+            return new FacilityHateoasResource(201, $validator->errors(), [], $this->getHATEOASLinks());
         }
 
         $img_name = null;
@@ -46,9 +46,9 @@ class FacilityAPI extends Controller
         ]);
 
         if ($facility) {
-            return new FacilityResource(210, 'FacilityHateoas Data Added Successfully', $facility);
+            return new FacilityHateoasResource(210, 'FacilityHateoas Data Added Successfully', $facility, $this->getHATEOASLinks());
         } else {
-            return new FacilityResource(201, 'Unsuccessfully Adding Data', []);
+            return new FacilityHateoasResource(201, 'Unsuccessfully Adding Data', [], $this->getHATEOASLinks());
         }
     }
 
@@ -57,10 +57,10 @@ class FacilityAPI extends Controller
         $facility = Facility::find($id);
 
         if ($facility) {
-            return new FacilityResource(210, 'FacilityHateoas Detail', $facility);
+            return new FacilityHateoasResource(210, 'FacilityHateoas Detail', $facility, $this->getHATEOASLinks($id));
         }
 
-        return new FacilityResource(201, 'FacilityHateoas Data Not Found', []);
+        return new FacilityHateoasResource(201, 'FacilityHateoas Data Not Found', [], $this->getHATEOASLinks());
     }
 
     public function update(Request $request, $id)
@@ -93,17 +93,16 @@ class FacilityAPI extends Controller
                     'status' => $request->input('status'),
                     'condition' => $request->input('condition'),
                 ]);
-
             }
 
             if ($facility) {
-                return new FacilityResource(210, 'FacilityHateoas Data Updated Successfully', $facility);
+                return new FacilityHateoasResource(210, 'FacilityHateoas Data Updated Successfully', $facility, $this->getHATEOASLinks($id));
             } else {
-                return new FacilityResource(201, 'Unsuccessfully Updating Data', []);
+                return new FacilityHateoasResource(201, 'Unsuccessfully Updating Data', [], $this->getHATEOASLinks());
             }
         }
 
-        return new FacilityResource(201, 'FacilityHateoas Data Not Found', []);
+        return new FacilityHateoasResource(201, 'FacilityHateoas Data Not Found', [], $this->getHATEOASLinks());
     }
 
     public function destroy($id)
@@ -117,9 +116,30 @@ class FacilityAPI extends Controller
             }
             $facility->delete();
 
-            return new FacilityResource(210, 'FacilityHateoas Data Deleted Successfully', []);
+            return new FacilityHateoasResource(210, 'FacilityHateoas Data Deleted Successfully', [], $this->getHATEOASLinks());
         } else {
-            return new FacilityResource(201, 'FacilityHateoas Data Not Found', []);
+            return new FacilityHateoasResource(201, 'FacilityHateoas Data Not Found', [], $this->getHATEOASLinks());
         }
+    }
+
+    // Helper function to generate HATEOAS links
+    private function getHATEOASLinks($id = null)
+    {
+        $links = [
+            'self' => url('api/facilities'),
+            'create' => url('api/facilities/create'),
+            'index' => url('api/facilities'),
+            'update' => url('api/facilities/{id}/update'),
+            'destroy' => url('api/facilities/{id}/destroy'),
+        ];
+
+        if ($id) {
+            // Replace {id} with actual facility ID in links
+            $links['self'] = url("api/facilities/{$id}");
+            $links['update'] = url("api/facilities/{$id}/update");
+            $links['destroy'] = url("api/facilities/{$id}/destroy");
+        }
+
+        return $links;
     }
 }
