@@ -34,7 +34,7 @@
                 <div class="row my-2">
                     <div class="col-lg-12">
                         <label for="detail" class="form-label">Detail</label>
-                        <textarea name="detail" class="form-control" id="detail" rows="3" required></textarea>
+                        <textarea name="detail" class="form-control" id="detail" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="row my-2">

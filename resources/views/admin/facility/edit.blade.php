@@ -42,7 +42,7 @@
                     <div class="row my-2">
                         <div class="col-lg-8">
                             <label for="item_img" class="form-label">Picture</label>
-                            <input class="form-control" type="file" id="item_img" name="item_img"
+                            <input class="form-control" type="file" id="facility_img" name="facility_img"
                                    accept=".png, .jpg, .jpeg">
                             <img src="{{ asset('facility/' . $data['facility']->filename) }}" class="mt-3" width="120rem">
                         </div>

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id()->primary();
             $table->string('name');
             $table->string('detail')->nullable();
+            $table->integer('usage')->default(0);
             $table->integer('capacity')->nullable();
             $table->string('filename')->nullable();
             $table->timestamps();
