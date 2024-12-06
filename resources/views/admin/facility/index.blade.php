@@ -56,7 +56,7 @@
                                     <p class="text-xs font-weight-bold mb-0">{{ $facility['name'] }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">{{ $facility['detail'] }}</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $facility['detail'] ? $facility['detail'] : '---' }}</p>
                                 </td>
                                 <td>
                                     <p class="text-xs font-weight-bold mb-0">{{ $facility['status'] }}</p>

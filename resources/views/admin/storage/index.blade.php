@@ -28,6 +28,7 @@
                         </th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Detail</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Usage</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Capacity</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                             Action
@@ -56,6 +57,9 @@
                                 </td>
                                 <td>
                                     <p class="text-xs font-weight-bold mb-0">{{ $storage['detail'] }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $storage['usage'] }}</p>
                                 </td>
                                 <td>
                                     <p class="text-xs font-weight-bold mb-0">{{ $storage['capacity'] }}</p>

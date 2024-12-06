@@ -24,14 +24,18 @@
                         </div>
                         <div class="col-lg-4">
                             <label for="location" class="form-label">Location</label>
-                            <input name="location" type="text" id="location" class="form-control" required>
+                            <select name="location" id="location" class="form-select" required>
+                                <option selected>-- Choose Location --</option>
+                                @foreach($data['storages'] as $storage)
+                                    <option value="{{ $storage->id }}">{{ $storage->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="row my-2">
                         <div class="col-lg-12">
                             <label for="description" class="form-label">Description</label>
-                            <textarea name="description" class="form-control" id="description" rows="3"
-                                      required></textarea>
+                            <textarea name="description" class="form-control" id="description" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="row my-2">
@@ -39,17 +43,17 @@
                             <label for="condition" class="form-label">Condition</label>
                             <select name="condition" id="condition" class="form-select" required>
                                 <option selected>-- Choose Condition --</option>
-                                <option value="0">Broken</option>
-                                <option value="1">Good</option>
-                                <option value="2">Lost</option>
+                                <option value="broken">Broken</option>
+                                <option value="good">Good</option>
+                                <option value="lost">Lost</option>
                             </select>
                         </div>
                         <div class="col-lg-6">
                             <label for="status" class="form-label">Status</label>
                             <select name="status" id="status" class="form-select" required>
                                 <option selected>-- Choose Status --</option>
-                                <option value="0">Available</option>
-                                <option value="1">Unavailable</option>
+                                <option value="available">Available</option>
+                                <option value="unavailable">Unavailable</option>
                             </select>
                         </div>
                     </div>

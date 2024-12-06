@@ -22,11 +22,13 @@ class ItemController extends Controller
     {
         $data['page_header'] = 'Item';
         $data['page_title'] = 'Add Item';
+        $data['storages'] = DB::table('storage')->whereColumn('usage', '<>', 'capacity')->get()->toArray();
         return view('admin.item.add', compact('data'));
     }
 
     public function store(Request $request)
     {
+        $storage = DB::table('storage')->where('id', '=', $request->location)->first();
         $img_name = null;
         if ($request->hasFile('item_img')) {
             $img_name = time() . '.' . $request->item_img->getClientOriginalExtension();
@@ -34,20 +36,22 @@ class ItemController extends Controller
         }
 
         $data['item_name'] = $request->item_name;
-        $data['location'] = $request->location;
+        $data['location'] = $storage->name;
         $data['description'] = $request->description;
-        $data['condition'] = $request->condition == 0 ? 'broken' : ($request->condition == 1 ? 'good' : 'lost');
-        $data['item_status'] = $request->status == 0 ? 'available' : 'unavailable';
+        $data['condition'] = $request->condition;
+        $data['item_status'] = $request->status;
         $data['filename'] = $img_name;
 
         $item = DB::table('item')->insert($data);
+        $update = DB::table('storage')->where('id', '=', $storage->id)->update([
+            'usage' => $storage->usage + 1,
+        ]);
 
-        if (!$item) {
-            return redirect(url('/admin/item/add'))->with('error', 'Item Not Added');
+        if ($item && $update) {
+            return redirect(url('/admin/item'))->with('success', 'Item Successfully Added');
         }
 
-        return redirect(url('/admin/item'))->with('success', 'Item Successfully Added');
-
+        return redirect(url('/admin/item/add'))->with('error', 'Item Not Added');
     }
 
     public function edit($id)
@@ -63,37 +67,46 @@ class ItemController extends Controller
         $item = DB::table('item')->where('item_id', $id)->first();
 
         $img_name = null;
-        if ($request->hasFile('item_img')) {
-            $img_name = time() . '.' . $request->item_img->getClientOriginalExtension();
-            $request->item_img->move(public_path('item'), $img_name);
+        if ($item) {
+            if ($request->hasFile('item_img')) {
+                if ($item->filename) {
+                    $imagePath = public_path('item/') . $item->filename;
 
-            $affected = DB::table('item')
-                ->where('item_id', $id)
-                ->update([
-                    'item_name' => $request->input('item_name'),
-                    'location' => $request->input('location'),
-                    'description' => $request->input('description'),
-                    'item_status' => $request->input('status'),
-                    'condition' => $request->input('condition'),
-                    'filename' => $img_name,
-                ]);
-        } else {
-            $affected = DB::table('item')
-                ->where('item_id', $id)
-                ->update([
-                    'item_name' => $request->input('item_name'),
-                    'location' => $request->input('location'),
-                    'description' => $request->input('description'),
-                    'item_status' => $request->input('status'),
-                    'condition' => $request->input('condition')
-                ]);
+                    if (file_exists($imagePath)) {
+                        unlink($imagePath);
+                    }
+                }
+                $img_name = time() . '.' . $request->item_img->getClientOriginalExtension();
+                $request->item_img->move(public_path('item'), $img_name);
+
+                $affected = DB::table('item')
+                    ->where('item_id', $id)
+                    ->update([
+                        'item_name' => $request->input('item_name'),
+                        'location' => $request->input('location'),
+                        'description' => $request->input('description'),
+                        'item_status' => $request->input('status'),
+                        'condition' => $request->input('condition'),
+                        'filename' => $img_name,
+                    ]);
+            } else {
+                $affected = DB::table('item')
+                    ->where('item_id', $id)
+                    ->update([
+                        'item_name' => $request->input('item_name'),
+                        'location' => $request->input('location'),
+                        'description' => $request->input('description'),
+                        'item_status' => $request->input('status'),
+                        'condition' => $request->input('condition')
+                    ]);
+            }
+
+            if ($affected) {
+                return redirect(url('/admin/item'))->with('success', 'Item Successfully Updated');
+            }
         }
 
-        if (!$affected) {
-            return redirect(url('/admin/item/edit/' . $id))->with('error', 'Item Not Updated');
-        }
-
-        return redirect(url('/admin/item'))->with('success', 'Item Successfully Updated');
+        return redirect(url('/admin/item/edit/' . $id))->with('error', 'Item Not Updated');
     }
 
     public function delete(Request $request)
