@@ -62,6 +62,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/request', [RentController::class, 'index'])->name('post.request');
             Route::get('/active', [RentController::class, 'active']);
             Route::post('/active', [RentController::class, 'active'])->name('post.return');
+            Route::post('/active/report', [RentController::class, 'report'])->name('report.add');
         });
 
 
