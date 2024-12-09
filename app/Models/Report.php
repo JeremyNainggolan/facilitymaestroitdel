@@ -12,11 +12,12 @@ class Report extends Model
     protected $table = 'report';
     protected $fillable = [
         'reason',
-        'location',
         'filename',
         'rent_id',
-        'report_user',
         'report_date',
+        'facility_id',
+        'item_id',
+        'user_id',
     ];
 
     // Relasi many-to-one dengan Rent

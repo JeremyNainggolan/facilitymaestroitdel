@@ -14,7 +14,6 @@ return new class extends Migration {
             $table->id('report_id');
             $table->string('reason');
             $table->string('filename');
-            $table->enum('condition', ['good', 'bad'])->default('good');
             $table->date('report_date');
             $table->unsignedBigInteger('rent_id', false);
             $table->unsignedBigInteger('facility_id', false)->nullable();

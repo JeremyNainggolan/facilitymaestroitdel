@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\DB;
 
 class FacilityController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $data['page_title'] = 'Facilities';
         $data['page_header'] = 'Facility';
         $data['facilities'] = Facility::all()->toArray();
@@ -66,42 +67,44 @@ class FacilityController extends Controller
     {
         $facility = DB::table('facility')->where('facility_id', $id)->first();
 
-        if ($request->hasFile('facility_img')) {
-            if ($facility) {
-                $imagePath = public_path('facility/') . $facility->filename;
+        if ($facility) {
+            if ($request->hasFile('facility_img')) {
+                if (!$facility->name) {
+                    $imagePath = public_path('facility/') . $facility->filename;
 
-                if (file_exists($imagePath)) {
-                    unlink($imagePath);
+                    if (file_exists($imagePath)) {
+                        unlink($imagePath);
+                    }
                 }
+                $img_name = time() . '.' . $request->facility_img->getClientOriginalExtension();
+                $request->facility_img->move(public_path('facility'), $img_name);
+
+                $affected = DB::table('facility')
+                    ->where('facility_id', $id)
+                    ->update([
+                        'name' => $request->input('facility_name'),
+                        'detail' => $request->input('detail'),
+                        'condition' => $request->input('condition'),
+                        'status' => $request->input('status'),
+                        'filename' => $img_name,
+                    ]);
+            } else {
+                $affected = DB::table('facility')
+                    ->where('facility_id', $id)
+                    ->update([
+                        'name' => $request->input('facility_name'),
+                        'detail' => $request->input('detail'),
+                        'condition' => $request->input('condition'),
+                        'status' => $request->input('status'),
+                    ]);
             }
-            $img_name = time() . '.' . $request->facility_img->getClientOriginalExtension();
-            $request->facility_img->move(public_path('facility'), $img_name);
 
-            $affected = DB::table('facility')
-                ->where('facility_id', $id)
-                ->update([
-                    'name' => $request->input('facility_name'),
-                    'detail' => $request->input('detail'),
-                    'condition' => $request->input('condition'),
-                    'status' => $request->input('status'),
-                    'filename' => $img_name,
-                ]);
-        } else {
-            $affected = DB::table('facility')
-                ->where('facility_id', $id)
-                ->update([
-                    'name' => $request->input('facility_name'),
-                    'detail' => $request->input('detail'),
-                    'condition' => $request->input('condition'),
-                    'status' => $request->input('status'),
-                ]);
+            if ($affected) {
+                return redirect(url('/admin/facility'))->with('success', 'Facility Successfully Updated');
+            }
         }
 
-        if (!$affected) {
-            return redirect(url('/admin/facility/edit/' . $id))->with('error', 'Facility Not Updated');
-        }
-
-        return redirect(url('/admin/facility'))->with('success', 'Facility Successfully Updated');
+        return redirect(url('/admin/facility/edit/' . $id))->with('error', 'Facility Not Updated');
     }
 
 

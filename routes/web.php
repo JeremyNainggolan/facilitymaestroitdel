@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/register', [UserController::class, 'register']);
 Route::post('/register', [UserController::class, 'store'])->name('register');
-Route::get('/register', [FacilityController::class, 'create'])->name('facility.create');
-Route::post('/register', [FacilityController::class, 'store'])->name('facility.register');
 Route::get('/login', [UserController::class, 'login']);
 Route::post('/login', [UserController::class, 'authentication'])->name('login');
 
@@ -64,6 +62,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/request', [RentController::class, 'index'])->name('post.request');
             Route::get('/active', [RentController::class, 'active']);
             Route::post('/active', [RentController::class, 'active'])->name('post.return');
+            Route::post('/active/report', [RentController::class, 'report'])->name('report.add');
         });
 
 
@@ -78,6 +77,7 @@ Route::prefix('admin')->group(function () {
 
         Route::prefix('report')->group(function () {
             Route::get('/', [ReportController::class, 'index']);
+            Route::get('/detail/{id}', [ReportController::class, 'detail']);
         });
     });
 });

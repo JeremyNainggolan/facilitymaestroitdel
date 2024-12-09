@@ -29,6 +29,7 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Condition</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Location</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                             Action
                         </th>
@@ -59,6 +60,9 @@
                                 </td>
                                 <td>
                                     <p class="text-xs font-weight-bold mb-0">{{ $item['condition'] }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $item['location'] }}</p>
                                 </td>
 
                                 <td class="text-center">
