@@ -49,7 +49,7 @@
                 </x-side-nav-links>
             </li>
             <li>
-                <x-side-nav-links href="/admin/report" :active="request()->is('admin/report')">
+                <x-side-nav-links href="/admin/report" :active="request()->is('admin/report') || request()->is('admin/report/detail/*')">
                     <i class="bi bi-exclamation-octagon px-2"></i>
                     Report
                 </x-side-nav-links>

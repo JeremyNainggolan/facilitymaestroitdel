@@ -77,6 +77,7 @@ Route::prefix('admin')->group(function () {
 
         Route::prefix('report')->group(function () {
             Route::get('/', [ReportController::class, 'index']);
+            Route::get('/detail/{id}', [ReportController::class, 'detail']);
         });
     });
 });

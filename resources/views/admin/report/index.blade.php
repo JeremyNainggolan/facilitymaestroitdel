@@ -12,11 +12,10 @@
                     <thead>
                     <tr class="">
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name
-                        </th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Location</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Picture</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rent User</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Report Date</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Item Name</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Facility Name</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                             Action
                         </th>
@@ -36,27 +35,23 @@
                                 </td>
                                 <td>
                                     <img alt=""
-                                         src="{{ asset($report['filename'] != null ? 'item/' . $report['filename'] : 'report/default.png') }}"
+                                         src="{{ asset($report['filename'] != null ? 'report/' . $report['filename'] : 'report/default.png') }}"
                                          height="120rem">
                                 </td>
                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">{{ $report['name'] }}</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $report['user_name'] }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">{{ $report['location'] }}</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $report['i_name'] ? $report['i_name'] : '---' }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-xs font-weight-bold mb-0">{{ $report['rent_user'] }}</p>
+                                    <p class="text-xs font-weight-bold mb-0">{{ $report['fa_name'] ? $report['fa_name'] : '---' }}</p>
                                 </td>
-                                <td>
-                                    <p class="text-xs font-weight-bold mb-0">{{ $report['report_date'] }}</p>
-                                </td>
-
                                 <td class="text-center">
-                                    <a href="{{ url('admin/user/edit/' . $report['report_id']) }}" type="button"
+                                    <a href="{{ url('admin/report/detail/' . $report['report_id']) }}" type="button"
                                        class="btn text-white"
                                        style="background-color: #8EAEC4"><i
-                                            class="bi bi-file-arrow-up me-2"></i>Detail</a>
+                                            class="bi bi-info-circle me-2"></i>Detail</a>
                                 </td>
                             </tr>
                         @endforeach
