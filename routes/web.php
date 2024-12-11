@@ -20,6 +20,7 @@ Route::post('/register', [UserController::class, 'store'])->name('register');
 Route::get('/login', [UserController::class, 'login']);
 Route::post('/login', [UserController::class, 'authentication'])->name('login');
 
+// Admin Route
 Route::prefix('admin')->group(function () {
     Route::get('login', [AdminController::class, 'login']);
     Route::post('login', [AdminController::class, 'post_login'])->name('admin.login');
@@ -82,6 +83,7 @@ Route::prefix('admin')->group(function () {
     });
 });
 
+// User Route
 Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');

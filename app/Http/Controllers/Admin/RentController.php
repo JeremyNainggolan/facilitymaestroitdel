@@ -79,7 +79,7 @@ class RentController extends Controller
             $rent = Rent::where('rent_id', '=', $request->input('rent_id'))->first()->toArray();
 
             $affected = DB::table('rent')->where('rent_id', '=', $request->input('rent_id'))->update([
-                'status' => 'returned',
+                'status' => 'done',
                 'return_date' => now(),
             ]);
 
@@ -92,10 +92,6 @@ class RentController extends Controller
                     'item_status' => 'available',
                 ]);
             }
-
-            echo 'update = ' . $update;
-            echo '$affected = ' . $affected;
-            exit();
 
             if ($affected && $update) {
                 return redirect('admin/rent/active')->with('success', 'Return Success');

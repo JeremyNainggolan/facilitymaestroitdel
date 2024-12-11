@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Rent;
 use App\Models\User;
+use App\Models\ViewRent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -160,6 +162,11 @@ class AdminController extends Controller
     public function history($id) {
         $data['page_header'] = 'History';
         $data['page_title'] = 'History';
+        $data['history'] = ViewRent::where('user_id', $id)->get()->toArray();
+//        echo '<pre>';
+//        print_r($data['history']);
+//        echo '<pre>';
+//        exit();
         return view('admin.user.history', compact('data'));
     }
 

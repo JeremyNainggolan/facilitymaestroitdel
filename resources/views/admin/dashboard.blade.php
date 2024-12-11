@@ -145,15 +145,14 @@
                                                                     const response = await fetch(`http://localhost:8000/api/status/${status.toLowerCase()}`);
                                                                     const result = await response.json();
 
-                                                                    // Pastikan status 210 adalah tanda kesuksesan
                                                                     if (result.status === "210") {
                                                                         data.push(result.data);
                                                                     } else {
-                                                                        data.push(0); // Tambahkan 0 jika gagal mendapatkan data
+                                                                        data.push(0);
                                                                     }
                                                                 } catch (error) {
                                                                     console.error(`Error fetching data for status: ${status}`, error);
-                                                                    data.push(0); // Tambahkan 0 jika terjadi error
+                                                                    data.push(0);
                                                                 }
                                                             }
                                                             return data;
@@ -193,6 +192,5 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection
