@@ -54,6 +54,7 @@ class AdminController extends Controller
         $data['total_user'] = DB::table('users')->count();
         $data['total_facility'] = DB::table('facility')->count();
         $data['total_report'] = DB::table('report')->count();
+
         return view('admin.dashboard', compact('data'));
     }
     public function profile(Request $request)

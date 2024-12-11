@@ -10,6 +10,7 @@ Route::get('/user', function (Request $request) {
 Route::apiResource('/facility', \App\Http\Controllers\Api\FacilityAPI::class);
 Route::apiResource('/item', \App\Http\Controllers\Api\ItemAPI::class);
 Route::apiResource('/user', \App\Http\Controllers\Api\UserAPI::class);
+Route::apiResource('/status', \App\Http\Controllers\Api\RentStatus::class);
 
 Route::apiResource('/hateoas/facility', \App\Http\Controllers\Api\Hateoas\FacilityHateoas::class);
 Route::apiResource('/hateoas/item', \App\Http\Controllers\Api\Hateoas\ItemHateoas::class);
