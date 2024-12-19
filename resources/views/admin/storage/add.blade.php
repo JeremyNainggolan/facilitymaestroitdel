@@ -68,7 +68,6 @@
 
         $(document).ready(function (e) {
 
-
             $('#storage_img').change(function () {
 
                 let reader = new FileReader();
@@ -78,7 +77,11 @@
                     $('#item_preview').attr('src', e.target.result);
                 }
 
-                reader.readAsDataURL(this.files[0]);
+                if (this.files[0]) {
+                    reader.readAsDataURL(this.files[0]);
+                } else {
+                    $('#item_preview').attr('src', '#'); // Reset to placeholder
+                }
 
             });
 

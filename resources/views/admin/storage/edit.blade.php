@@ -6,6 +6,13 @@
         <div class="card">
             <div class="card-header pb-0 pt-3 ">
                 <h6 class="text-capitalize">{{ $data['page_header'] }}</h6>
+                @if($errors->any())
+                    @foreach($errors->all() as $error)
+                        <div class="text-danger">
+                            {{ $error }}
+                        </div>
+                    @endforeach
+                @endif
             </div>
             <div class="mx-4">
                 <form method="post" action="{{ url('admin/storage/edit/'. $data['storage']->id) }}"
@@ -30,8 +37,8 @@
                     </div>
                     <div class="row my-2">
                         <div class="col-lg-12">
-                            <label for="detail" class="form-label">Detail</label>
-                            <input name="detail" class="form-control" id="detail"
+                            <label for="description" class="form-label">Detail</label>
+                            <input name="description" class="form-control" id="description"
                                    value="{{ $data['storage']->detail }}">
                         </div>
                     </div>
@@ -40,7 +47,6 @@
                             <label for="storage_img" class="form-label">Picture</label>
                             <input class="form-control" type="file" id="storage_img" name="storage_img"
                                    accept=".png, .jpg, .jpeg">
-                            <img src="{{ asset('storage/' . $data['storage']->filename) }}" class="mt-4" width="120rem">
                         </div>
                     </div>
                     <div class="text-center justify-content-center">

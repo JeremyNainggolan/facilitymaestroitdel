@@ -26,6 +26,11 @@ class StorageController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|alpha_spaces',
+            'description' => 'required|alpha_spaces',
+            'capacity' => 'required',
+        ]);
         $img_name = null;
         if ($request->hasFile('storage_img')) {
             $img_name = time() . '.' . $request->storage_img->getClientOriginalExtension();
@@ -57,6 +62,10 @@ class StorageController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'alpha_spaces',
+            'description' => 'alpha_spaces',
+        ]);
         $storage = DB::table('storage')->where('id', $id)->first();
 
         $img_name = null;
@@ -75,7 +84,7 @@ class StorageController extends Controller
                 ->where('id', $id)
                 ->update([
                     'name' => $request->input('name'),
-                    'detail' => $request->input('detail'),
+                    'detail' => $request->input('description'),
                     'capacity' => $request->input('capacity'),
                     'filename' => $img_name,
                 ]);
@@ -84,7 +93,7 @@ class StorageController extends Controller
                 ->where('id', $id)
                 ->update([
                     'name' => $request->input('name'),
-                    'detail' => $request->input('detail'),
+                    'detail' => $request->input('description'),
                     'capacity' => $request->input('capacity'),
                 ]);
         }
@@ -102,10 +111,17 @@ class StorageController extends Controller
         $storage = Storage::where('id', $request->input('id'))->first();
 
         if ($storage) {
-            $imagePath = public_path('storage/') . $storage->filename;
 
-            if (file_exists($imagePath)) {
-                unlink($imagePath);
+            if ($storage->filename) {
+                $imagePath = public_path('storage/') . $storage->filename;
+
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+
+            if ($storage->capacity) {
+                return redirect()->back()->with('error', 'Storage failed to delete');
             }
 
             $storage->delete();
