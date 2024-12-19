@@ -19,13 +19,12 @@
                 @endif
                 <div class="row my-2">
                     <div class="col-lg-10">
-                        <label for="facility_name" class="form-label">Facility Name</label>
-                        <input name="facility_name" type="text" id="facility_name" class="form-control" autofocus required>
+                        <label for="name" class="form-label">Facility Name</label>
+                        <input name="name" type="text" id="name" class="form-control" autofocus required>
                     </div>
                     <div class="col-lg-2">
                         <label for="status" class="form-label">Status</label>
                         <select name="status" id="status" class="form-select" required>
-                            <option selected>-- Choose Status --</option>
                             <option value="available">Available</option>
                             <option value="unavailable">Unavailable</option>
                         </select>
@@ -34,15 +33,14 @@
                 <div class="row my-2">
                     <div class="col-lg-12">
                         <label for="detail" class="form-label">Detail</label>
-                        <textarea name="detail" class="form-control" id="detail" rows="3"></textarea>
+                        <textarea name="detail" class="form-control" id="detail" rows="3" required></textarea>
                     </div>
                 </div>
                 <div class="row my-2">
                     <div class="col-lg-3">
                         <label for="condition" class="form-label">Condition</label>
                         <select name="condition" id="condition" class="form-select" required>
-                            <option selected>-- Choose Condition --</option>
-                            <option value="broken">Bad</option>
+                            <option value="bad">Bad</option>
                             <option value="good">Good</option>
                         </select>
                     </div>
@@ -70,7 +68,6 @@
 
         $(document).ready(function (e) {
 
-
             $('#facility_img').change(function () {
 
                 let reader = new FileReader();
@@ -80,7 +77,11 @@
                     $('#item_preview').attr('src', e.target.result);
                 }
 
-                reader.readAsDataURL(this.files[0]);
+                if (this.files[0]) {
+                    reader.readAsDataURL(this.files[0]);
+                } else {
+                    $('#item_preview').attr('src', '#'); // Reset to placeholder
+                }
 
             });
 

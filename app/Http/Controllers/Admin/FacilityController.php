@@ -29,17 +29,18 @@ class FacilityController extends Controller
 
     public function store(Request $request)
     {
-//        echo '<pre>';
-//        print_r($_POST);
-//        echo '<pre>';
-//        exit();
+        $request->validate([
+            'name' => 'required|alpha_spaces',
+            'detail' => 'required|alpha_spaces',
+        ]);
+
         $img_name = null;
         if ($request->hasFile('facility_img')) {
             $img_name = time() . '.' . $request->facility_img->getClientOriginalExtension();
             $request->facility_img->move(public_path('facility'), $img_name);
         }
 
-        $data['name'] = $request->facility_name;
+        $data['name'] = $request->name;
         $data['detail'] = $request->detail;
         $data['condition'] = $request->condition;
         $data['status'] = $request->status;
@@ -65,6 +66,11 @@ class FacilityController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'alpha_spaces',
+            'detail' => 'alpha_spaces',
+        ]);
+
         $facility = DB::table('facility')->where('facility_id', $id)->first();
 
         if ($facility) {
@@ -82,7 +88,7 @@ class FacilityController extends Controller
                 $affected = DB::table('facility')
                     ->where('facility_id', $id)
                     ->update([
-                        'name' => $request->input('facility_name'),
+                        'name' => $request->input('name'),
                         'detail' => $request->input('detail'),
                         'condition' => $request->input('condition'),
                         'status' => $request->input('status'),
@@ -92,7 +98,7 @@ class FacilityController extends Controller
                 $affected = DB::table('facility')
                     ->where('facility_id', $id)
                     ->update([
-                        'name' => $request->input('facility_name'),
+                        'name' => $request->input('name'),
                         'detail' => $request->input('detail'),
                         'condition' => $request->input('condition'),
                         'status' => $request->input('status'),

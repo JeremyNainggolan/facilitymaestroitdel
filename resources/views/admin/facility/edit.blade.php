@@ -11,6 +11,13 @@
                 <form method="post" action="{{ url('admin/facility/edit/'. $data['facility']->facility_id) }}"
                       enctype="multipart/form-data">
                     @csrf
+                    @if($errors->any())
+                        @foreach($errors->all() as $error)
+                            <div class="text-danger">
+                                {{ $error }}
+                            </div>
+                        @endforeach
+                    @endif
                     @if (session()->has('error'))
                         <div class="text-danger fw-bolder">
                             {{ session('error') }}
@@ -18,8 +25,8 @@
                     @endif
                     <div class="row my-2">
                         <div class="col-lg-10">
-                            <label for="facility_name" class="form-label">Facility Name</label>
-                            <input name="facility_name" type="text" id="facility_name" class="form-control"
+                            <label for="name" class="form-label">Facility Name</label>
+                            <input name="name" type="text" id="name" class="form-control"
                                    value="{{ $data['facility']->name }}">
                         </div>
                         <div class="col-lg-2">
@@ -44,7 +51,6 @@
                             <label for="item_img" class="form-label">Picture</label>
                             <input class="form-control" type="file" id="facility_img" name="facility_img"
                                    accept=".png, .jpg, .jpeg">
-                            <img src="{{ asset('facility/' . $data['facility']->filename) }}" class="mt-3" width="120rem">
                         </div>
                         <div class="col-lg-4">
                             <label for="condition" class="form-label">Condition</label>

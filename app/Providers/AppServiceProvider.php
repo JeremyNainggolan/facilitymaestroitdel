@@ -21,11 +21,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Validator::extend('alpha_spaces', function ($attribute, $value, $parameters, $validator) {
-            return preg_match('/^[a-zA-Z\s]*$/', $value); // Hanya huruf dan spasi
+            return preg_match('/^(?=.*[a-zA-Z])[a-zA-Z0-9\s]+$/', $value);
         });
 
         Validator::replacer('alpha_spaces', function ($message, $attribute, $rule, $parameters) {
-            return 'The ' . $attribute . ' can only contain letters and spaces.';
+            return 'The ' . $attribute . ' must contain at least one word (letters) and can only contain letters, numbers, and spaces.';
         });
     }
 }
