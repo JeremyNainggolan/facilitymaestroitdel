@@ -68,12 +68,20 @@ class ItemController extends Controller
         $data['page_header'] = 'Item';
         $data['page_title'] = 'Edit Item';
         $data['item'] = DB::table('item')->where('item_id', $id)->first();
+        $data['storages'] = DB::table('storage')->whereColumn('usage', '<>', 'capacity')->get()->toArray();
         return view('admin.item.edit', compact('data'));
     }
 
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'item_name' => 'alpha_spaces',
+            'description' => 'alpha_spaces',
+        ]);
+
         $item = DB::table('item')->where('item_id', $id)->first();
+        $storage = DB::table('storage')->where('id', '=', $request->storage_id)->first();
 
         $img_name = null;
         if ($item) {
@@ -88,31 +96,32 @@ class ItemController extends Controller
                 $img_name = time() . '.' . $request->item_img->getClientOriginalExtension();
                 $request->item_img->move(public_path('item'), $img_name);
 
-                $affected = DB::table('item')
-                    ->where('item_id', $id)
-                    ->update([
-                        'item_name' => $request->input('item_name'),
-                        'location' => $request->input('location'),
-                        'description' => $request->input('description'),
-                        'item_status' => $request->input('status'),
-                        'condition' => $request->input('condition'),
-                        'filename' => $img_name,
-                    ]);
-            } else {
-                $affected = DB::table('item')
-                    ->where('item_id', $id)
-                    ->update([
-                        'item_name' => $request->input('item_name'),
-                        'location' => $request->input('location'),
-                        'description' => $request->input('description'),
-                        'item_status' => $request->input('status'),
-                        'condition' => $request->input('condition')
-                    ]);
+                DB::table('item')->where('item_id', '=', $item->item_id)->update(['filename' => $img_name]);
             }
 
-            if ($affected) {
-                return redirect(url('/admin/item'))->with('success', 'Item Successfully Updated');
+            if ($item->location != $storage->name) {
+                $temp_storage = DB::table('storage')->where('id', '=', $item->storage_id)->first();
+
+                if ($temp_storage) {
+                    DB::table('storage')->where('id', '=', $item->storage_id)->update(['usage' => $temp_storage->usage - 1]);
+                }
+
+                DB::table('item')->where('item_id', '=', $item->item_id)->update([
+                    'location' => $storage->name,
+                    'storage_id' => $storage->id,
+                ]);
+
+                DB::table('storage')->where('id', '=', $storage->id)->update(['usage' => $storage->usage + 1]);
             }
+
+            DB::table('item')->where('item_id', '=', $item->item_id)->update([
+                'item_name' => $request->input('item_name'),
+                'description' => $request->input('description'),
+                'item_status' => $request->input('status'),
+                'condition' => $request->input('condition'),
+            ]);
+
+            return redirect(url('/admin/item'))->with('success', 'Item Successfully Updated');
         }
 
         return redirect(url('/admin/item/edit/' . $id))->with('error', 'Item Not Updated');

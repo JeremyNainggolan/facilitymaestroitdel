@@ -11,6 +11,13 @@
                 <form method="post" action="{{ url('admin/item/edit/'. $data['item']->item_id) }}"
                       enctype="multipart/form-data">
                     @csrf
+                    @if($errors->any())
+                        @foreach($errors->all() as $error)
+                            <div class="text-danger">
+                                {{ $error }}
+                            </div>
+                        @endforeach
+                    @endif
                     @if (session()->has('error'))
                         <div class="text-danger fw-bolder">
                             {{ session('error') }}
@@ -24,8 +31,12 @@
                         </div>
                         <div class="col-lg-4">
                             <label for="location" class="form-label">Location</label>
-                            <input name="location" type="text" id="location" class="form-control"
-                                   value="{{ $data['item']->location }}">
+                            <select name="storage_id" id="storage_id" class="form-select" required>
+                                <option value="{{ $data['item']->storage_id }}">{{ $data['item']->location }}</option>
+                                @foreach($data['storages'] as $storage)
+                                    <option value="{{ $storage->id }}">{{ $storage->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="row my-2">
