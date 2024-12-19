@@ -5,13 +5,6 @@
     <x-nav-bar></x-nav-bar>
 
     <div class="container my-3">
-        <div class="d-flex align-items-center justify-content-between">
-
-            <div class="w-100 input-group">
-                <input type="text" class="form-control border-dark ps-5" placeholder="Search">
-                <span class="input-group-text border-dark" id="basic-addon1"><i class="bi bi-search"></i></span>
-            </div>
-        </div>
 
         <div class="card p-4 position-relative mt-4 rounded-2 shadow-blur shadow-lg ">
             <div class="card-title text-end text-white ">

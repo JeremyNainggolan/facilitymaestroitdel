@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement('CREATE VIEW view_rent_history AS (
+        DB::statement('CREATE VIEW view_report_history AS (
         SELECT
           `r`.`report_id`   AS `report_id`,
           `r`.`reason`      AS `reason`,
@@ -22,6 +22,7 @@ return new class extends Migration
           `r`.`item_id`     AS `item_id`,
           `r`.`facility_id` AS `facility_id`,
           `r`.`user_id`     AS `user_id`,
+          `u`.`name`     AS `user_name`,
           `re`.`status`     AS `rent_status`,
           `i`.`item_name`    AS `i_name`,
           `i`.`condition`	AS `i_condition`,
@@ -35,7 +36,7 @@ return new class extends Migration
             LEFT JOIN `item` `i`
               ON (`r`.`item_id` = `i`.`item_id`))
            LEFT JOIN `facility` `f`
-             ON (`r`.`facility_id` = `f`.`facility_id`))');
+             ON (`r`.`facility_id` = `f`.`facility_id`)))');
     }
 
     /**

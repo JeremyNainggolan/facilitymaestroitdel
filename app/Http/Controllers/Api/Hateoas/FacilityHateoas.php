@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\Hateoas;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\FacilityResource;
 use App\Http\Resources\Hateoas\FacilityHateoasResource;
 use Illuminate\Http\Request;
 use App\Models\Facility;

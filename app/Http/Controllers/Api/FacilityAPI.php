@@ -15,10 +15,10 @@ class FacilityAPI extends Controller
         $facility = Facility::all();
 
         if ($facility->count() == 0) {
-            return new FacilityResource(201, 'FacilityHateoas Data Not Found', []);
+            return new FacilityResource(201, 'Facility Data Not Found', []);
         }
 
-        return new FacilityResource(210, 'FacilityHateoas Data', $facility);
+        return new FacilityResource(210, 'Facility Data', $facility);
     }
 
     public function store(Request $request)
@@ -46,7 +46,7 @@ class FacilityAPI extends Controller
         ]);
 
         if ($facility) {
-            return new FacilityResource(210, 'FacilityHateoas Data Added Successfully', $facility);
+            return new FacilityResource(210, 'Facility Data Added Successfully', $facility);
         } else {
             return new FacilityResource(201, 'Unsuccessfully Adding Data', []);
         }
@@ -57,10 +57,10 @@ class FacilityAPI extends Controller
         $facility = Facility::find($id);
 
         if ($facility) {
-            return new FacilityResource(210, 'FacilityHateoas Detail', $facility);
+            return new FacilityResource(210, 'Facility Detail', $facility);
         }
 
-        return new FacilityResource(201, 'FacilityHateoas Data Not Found', []);
+        return new FacilityResource(201, 'Facility Data Not Found', []);
     }
 
     public function update(Request $request, $id)
@@ -97,13 +97,13 @@ class FacilityAPI extends Controller
             }
 
             if ($facility) {
-                return new FacilityResource(210, 'FacilityHateoas Data Updated Successfully', $facility);
+                return new FacilityResource(210, 'Facility Data Updated Successfully', $facility);
             } else {
                 return new FacilityResource(201, 'Unsuccessfully Updating Data', []);
             }
         }
 
-        return new FacilityResource(201, 'FacilityHateoas Data Not Found', []);
+        return new FacilityResource(201, 'Facility Data Not Found', []);
     }
 
     public function destroy($id)
@@ -117,9 +117,9 @@ class FacilityAPI extends Controller
             }
             $facility->delete();
 
-            return new FacilityResource(210, 'FacilityHateoas Data Deleted Successfully', []);
+            return new FacilityResource(210, 'Facility Data Deleted Successfully', []);
         } else {
-            return new FacilityResource(201, 'FacilityHateoas Data Not Found', []);
+            return new FacilityResource(201, 'Facility Data Not Found', []);
         }
     }
 }

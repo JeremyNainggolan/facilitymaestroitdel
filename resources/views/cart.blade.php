@@ -44,7 +44,7 @@
                                     </td>
                                     <td>
                                         <p class="text-xs font-weight-bold mb-0"><img
-                                                src="{{ asset('item/' . $item->options->filename) }}"
+                                                src="{{ $item->options->filename ? asset('item/' . $item->options->filename) : asset('item/default.png')}}"
                                                 height="120rem">
                                         </p>
                                     </td>
