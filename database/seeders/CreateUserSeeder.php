@@ -16,6 +16,14 @@ class CreateUserSeeder extends Seeder
     {
         $users = array(
             array(
+                'name' => 'ppwuser',
+                'email' => 'ppwuser@gmail.com',
+                'username' => 'ppwuser',
+                'phonenumber' => '089765791211',
+                'type' => 0,
+                'password' => Hash::make('ppwuser'),
+            ),
+            array(
                 'name' => 'Rahel Simanjuntak',
                 'email' => 'rahelsimanjuntak2909@gmail.com',
                 'username' => 'rahelsimanjuntak2909',

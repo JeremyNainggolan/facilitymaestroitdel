@@ -14,7 +14,7 @@ class CreateStorageSeeder extends Seeder
             [
                 'name' => 'Main Storage',
                 'detail' => 'Primary storage area for all items',
-                'usage' => 50,
+                'usage' => 2,
                 'capacity' => 100,
                 'filename' => 'main_storage.jpg',
                 'created_at' => now(),
@@ -23,7 +23,7 @@ class CreateStorageSeeder extends Seeder
             [
                 'name' => 'Backup Storage',
                 'detail' => 'Secondary storage for backup items',
-                'usage' => 20,
+                'usage' => 1,
                 'capacity' => 50,
                 'filename' => 'backup_storage.jpg',
                 'created_at' => now(),
