@@ -24,8 +24,7 @@
                         </div>
                         <div class="col-lg-4">
                             <label for="location" class="form-label">Location</label>
-                            <select name="location" id="location" class="form-select" required>
-                                <option selected>-- Choose Location --</option>
+                            <select name="storage_id" id="storage_id" class="form-select" required>
                                 @foreach($data['storages'] as $storage)
                                     <option value="{{ $storage->id }}">{{ $storage->name }}</option>
                                 @endforeach
@@ -35,23 +34,21 @@
                     <div class="row my-2">
                         <div class="col-lg-12">
                             <label for="description" class="form-label">Description</label>
-                            <textarea name="description" class="form-control" id="description" rows="3"></textarea>
+                            <textarea required name="description" class="form-control" id="description" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="row my-2">
                         <div class="col-lg-6">
                             <label for="condition" class="form-label">Condition</label>
-                            <select name="condition" id="condition" class="form-select" required>
-                                <option selected>-- Choose Condition --</option>
-                                <option value="broken">Broken</option>
+                            <select  name="condition" id="condition" class="form-select" required>
                                 <option value="good">Good</option>
+                                <option value="broken">Broken</option>
                                 <option value="lost">Lost</option>
                             </select>
                         </div>
                         <div class="col-lg-6">
                             <label for="status" class="form-label">Status</label>
                             <select name="status" id="status" class="form-select" required>
-                                <option selected>-- Choose Status --</option>
                                 <option value="available">Available</option>
                                 <option value="unavailable">Unavailable</option>
                             </select>
@@ -86,7 +83,6 @@
 
         $(document).ready(function (e) {
 
-
             $('#item_img').change(function () {
 
                 let reader = new FileReader();
@@ -96,7 +92,11 @@
                     $('#item_preview').attr('src', e.target.result);
                 }
 
-                reader.readAsDataURL(this.files[0]);
+                if (this.files[0]) {
+                    reader.readAsDataURL(this.files[0]);
+                } else {
+                    $('#item_preview').attr('src', '#'); // Reset to placeholder
+                }
 
             });
 

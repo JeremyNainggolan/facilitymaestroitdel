@@ -28,7 +28,15 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
-        $storage = DB::table('storage')->where('id', '=', $request->location)->first();
+        $request->validate([
+            'item_name' => 'required|alpha_spaces',
+            'storage_id' => 'required',
+            'description' => 'required|alpha_spaces',
+            'condition' => 'required',
+            'status' => 'required',
+        ]);
+
+        $storage = DB::table('storage')->where('id', '=', $request->storage_id)->first();
         $img_name = null;
         if ($request->hasFile('item_img')) {
             $img_name = time() . '.' . $request->item_img->getClientOriginalExtension();
@@ -37,6 +45,7 @@ class ItemController extends Controller
 
         $data['item_name'] = $request->item_name;
         $data['location'] = $storage->name;
+        $data['storage_id'] = $storage->id;
         $data['description'] = $request->description;
         $data['condition'] = $request->condition;
         $data['item_status'] = $request->status;
@@ -114,13 +123,23 @@ class ItemController extends Controller
         $item = Item::where('item_id', $request->input('item_id'))->first();
 
         if ($item) {
-            $imagePath = public_path('item/') . $item->filename;
+            if ($item->filename) {
+                $imagePath = public_path('item/') . $item->filename;
 
-            if (file_exists($imagePath)) {
-                unlink($imagePath);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
             }
 
-            $item->delete();
+            $storage = DB::table('storage')->where('id', '=', $item->storage_id)->first();
+
+            $update = DB::table('storage')->where('id', '=', $item->storage_id)->update([
+                'usage' => $storage->usage - 1,
+            ]);
+
+            if ($update) {
+                $item->delete();
+            }
 
             return redirect()->back()->with('success', 'Item deleted successfully');
         }
