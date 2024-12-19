@@ -23,7 +23,7 @@ class StorageAPI extends Controller
         }
 
         return response()->json([
-            'status' => 200,
+            'status' => 404,
             'message' => 'No data found',
             'data' => [],
         ]);
