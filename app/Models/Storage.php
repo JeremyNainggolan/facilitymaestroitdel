@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Storage extends Model
 {
@@ -18,8 +19,8 @@ class Storage extends Model
     ];
 
     // Relasi one-to-many dengan Item
-    public function items()
+    public function items(): HasMany
     {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(Item::class, 'storage_id', 'id');
     }
 }

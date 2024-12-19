@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('item', function (Blueprint $table) {
             $table->id('item_id')->primary();
+            $table->unsignedBigInteger('storage_id'); // Foreign key
             $table->string('item_name');
             $table->string('location')->nullable();
             $table->string('description')->nullable();
@@ -20,8 +21,11 @@ return new class extends Migration
             $table->enum('condition', ['good', 'broken', 'lost'])->default('good');
             $table->string('filename')->nullable();
             $table->timestamps();
+
+            $table->foreign('storage_id')->references('id')->on('storage')->onDelete('cascade');
         });
     }
+
 
     /**
      * Reverse the migrations.
