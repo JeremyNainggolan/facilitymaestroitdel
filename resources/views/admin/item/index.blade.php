@@ -5,9 +5,9 @@
     <div class="container-fluid py-4">
         <div class="card">
             <div class="card-header pb-0 pt-3 ">
-                <h6 class="text-capitalize">{{ $data['page_header'] }}<a
-                        href="{{ url('admin/item/add') }}" class="text-decoration-none text-dark"><i
-                            class="bi bi-node-plus-fill ms-2"></i></a></h6>
+                <a href="{{ url('admin/item/add') }}" class="text-decoration-none text-dark">
+                    <h6 class="text-capitalize">{{ $data['page_header'] }}<i class="bi bi-node-plus-fill ms-2"></i></h6>
+                </a>
                 @if (session()->has('error'))
                     <div class="text-danger fw-bolder">
                         {{ session('error') }}

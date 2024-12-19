@@ -13,7 +13,7 @@ class FacilityController extends Controller
     public function index()
     {
         $data['page_title'] = 'Facilities';
-        $data['page_header'] = 'Facility';
+        $data['page_header'] = 'Add';
         $data['facilities'] = Facility::all()->toArray();
 
         return view('admin.facility.index', compact('data'));
