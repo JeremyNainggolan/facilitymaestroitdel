@@ -23,7 +23,7 @@ class Item extends Model
     // Relasi many-to-one dengan Storage
     public function storage()
     {
-        return $this->belongsTo(Storage::class, 'storage_id');
+        return $this->belongsTo(Storage::class, 'storage_id', 'id');
     }
 
     // Relasi one-to-many dengan Rent
