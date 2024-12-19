@@ -122,19 +122,13 @@
                                                     document.addEventListener("DOMContentLoaded", () => {
                                                         const statusLabels = [
                                                             'Pending',
-                                                            'Accepted',
                                                             'Rejected',
-                                                            'Returned',
-                                                            'Done',
                                                             'Reported'
                                                         ];
 
                                                         const backgroundColors = [
                                                             'rgb(255, 165, 0)', // Pending
-                                                            'rgb(50, 205, 50)', // Accepted
                                                             'rgb(255, 69, 58)', // Rejected
-                                                            'rgb(255, 215, 0)', // Returned
-                                                            'rgb(0, 128, 255)', // Done
                                                             'rgb(128, 0, 128)', // Reported
                                                         ];
 

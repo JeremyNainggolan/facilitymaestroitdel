@@ -15,9 +15,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/item', \App\Http\Controllers\Api\ItemAPI::class);
     Route::apiResource('/user', \App\Http\Controllers\Api\UserAPI::class);
     Route::apiResource('/storage', \App\Http\Controllers\Api\StorageAPI::class);
-    Route::apiResource('/status', \App\Http\Controllers\Api\RentStatus::class);
 });
 
+Route::apiResource('/status', \App\Http\Controllers\Api\RentStatus::class);
 Route::apiResource('/hateoas/facility', \App\Http\Controllers\Api\Hateoas\FacilityHateoas::class);
 Route::apiResource('/hateoas/item', \App\Http\Controllers\Api\Hateoas\ItemHateoas::class);
 Route::apiResource('/hateoas/user', \App\Http\Controllers\Api\Hateoas\UserHateoas::class);
